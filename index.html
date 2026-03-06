@@ -25,9 +25,9 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            padding: 40px 20px;
+            padding: 60px 20px;
             color: #fff;
-            overflow: hidden; /* منع السكرول عشان نحافظ على شكل الشعارات بالزوايا */
+            overflow-x: hidden;
             position: relative;
         }
 
@@ -41,31 +41,31 @@
             to { opacity: 1; transform: translateY(0); }
         }
 
-        /* --- Floating Icons (Diagonal Balance Strategy) --- */
+        /* --- Diagonal Balance Strategy (Icons behind glass) --- */
         .bg-icon {
             position: absolute;
-            z-index: 20; /* 🔴 رجعت فوق المستطيل */
+            z-index: -1; /* Place behind the glass layer */
             pointer-events: none;
             opacity: 0.95;
         }
 
-        /* Primary Weight: After Effects (Top-Right) */
+        /* Primary Visual Weight: After Effects (Top-Right Corner) */
         .bg-ae {
-            top: 5%;
-            right: 5%;
+            top: -45px; 
+            right: -45px;
             width: 130px;
             border-radius: 18px;
-            filter: drop-shadow(0 0 30px var(--neon-purple));
+            filter: drop-shadow(0 0 25px var(--neon-purple)) drop-shadow(0 0 50px var(--neon-purple));
             animation: floatAE 6s ease-in-out infinite;
         }
 
-        /* Symmetrical Counterweight: Alight Motion (Bottom-Left) */
+        /* Symmetrical Counterweight: Alight Motion (Bottom-Left Corner) */
         .bg-am {
-            bottom: 5%; /* 🔴 مكانه تحت يسار */
-            left: 5%;
-            width: 110px; /* 🔴 تم تصغيره بنسبة 15% للعمق الميداني */
+            bottom: -45px; 
+            left: -45px;
+            width: 110px; /* Scaled down for depth of field */
             border-radius: 50%;
-            /* Chromatic Integration: نعمنا الأخضر مع توهج بنفسجي خفيف */
+            /* Chromatic Integration: Soft purple glow */
             filter: saturate(0.8) drop-shadow(0 0 20px var(--neon-purple));
             animation: floatAM 7s ease-in-out infinite;
         }
@@ -76,11 +76,11 @@
         /* --- Main Card Container --- */
         .container {
             background: rgba(20, 5, 35, 0.75);
-            backdrop-filter: blur(15px);
-            -webkit-backdrop-filter: blur(15px);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
             border: 1px solid rgba(157, 0, 255, 0.3);
             border-radius: 25px;
-            padding: 40px 30px;
+            padding: 45px 30px;
             width: 100%;
             max-width: 440px;
             text-align: center;
@@ -128,7 +128,7 @@
             animation-delay: 0.5s;
         }
 
-        .bio { font-size: 15px; color: #b3b3b3; margin-bottom: 25px; opacity: 0; animation: btnFadeIn 0.5s ease-out forwards; animation-delay: 0.6s; }
+        .bio { font-size: 14px; color: #b3b3b3; margin-bottom: 25px; opacity: 0; animation: btnFadeIn 0.5s ease-out forwards; animation-delay: 0.6s; }
 
         /* --- Buttons --- */
         .links-wrapper { display: flex; flex-direction: column; gap: 12px; }
@@ -200,9 +200,9 @@
     <script>
         // Visitor Counter
         document.addEventListener("DOMContentLoaded", () => {
-            let visits = localStorage.getItem('vortx_diag_count') || 0;
+            let visits = localStorage.getItem('vortx_final_count') || 0;
             visits++;
-            localStorage.setItem('vortx_diag_count', visits);
+            localStorage.setItem('vortx_final_count', visits);
             document.getElementById('visitCount').innerText = visits;
         });
 
