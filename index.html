@@ -79,7 +79,7 @@
         .glitch { animation: glitch 5s infinite; }
         @keyframes glitch { 0%, 92%, 100% { filter: none; transform: translate(0); } 94% { filter: brightness(1.8) hue-rotate(20deg); transform: translate(2px, -2px); } 96% { filter: contrast(2); transform: translate(-2px, 2px); } }
 
-        /* --- 5. NEW: Premium Crystal Glass Panel --- */
+        /* --- 5. Crystal Glass Panel --- */
         .crystal-panel {
             position: relative; z-index: 10;
             margin: 5px auto 30px; padding: 12px 25px;
@@ -122,7 +122,34 @@
         .link-btn:hover {
             transform: scale(1.05); box-shadow: 0 0 15px #b400ff, 0 0 30px #7a00ff; border-color: var(--neon-purple);
         }
-        .store-btn { background: linear-gradient(90deg, #4a00e0, #8e2de2); border: none; }
+
+        /* --- 🛑 تفعيل الانعكاس الزجاجي لزر المتجر 🛑 --- */
+        .store-btn {
+            background: linear-gradient(90deg, #4a00e0, #8e2de2);
+            border: none;
+            position: relative; /* ضروري لضبط موقع الانعكاس */
+            overflow: hidden; /* يمنع الانعكاس من الخروج برا حدود الزر */
+        }
+
+        /* عنصر افتراضي لإنشاء الانعكاس */
+        .store-btn::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%; /* يبدأ من خارج الزر على اليسار */
+            width: 100%;
+            height: 100%;
+            /* تدرج لوني مائل يمثل لمعة الضوء */
+            background: linear-gradient(120deg, transparent, rgba(255, 255, 255, 0.25), transparent);
+            transition: all 0.6s ease; /* سرعة حركة اللمعة */
+            pointer-events: none; /* يمنع الانعكاس من اعتراض الضغطات */
+        }
+
+        /* تأثير الحركة عند تمرير الماوس */
+        .store-btn:hover::after {
+            left: 100%; /* يتحرك الانعكاس لليمين عبر الزر */
+        }
+        /* ----------------------------------------------- */
 
         .visitor-badge { margin-top: 30px; font-size: 12px; color: rgba(255, 255, 255, 0.6); }
         .visitor-badge span { color: #d866ff; font-weight: bold; }
@@ -385,4 +412,3 @@
     </script>
 </body>
 </html>
-
