@@ -111,7 +111,7 @@
             filter: drop-shadow(0px 2px 3px rgba(0, 0, 0, 0.8)); position: relative; z-index: 2;
         }
 
-        /* --- 6. Buttons --- */
+        /* --- 6. Buttons & Button Icons --- */
         .links-wrapper { display: flex; flex-direction: column; gap: 15px; }
         .link-btn {
             display: flex; align-items: center; justify-content: center;
@@ -123,30 +123,36 @@
             transform: scale(1.05); box-shadow: 0 0 15px #b400ff, 0 0 30px #7a00ff; border-color: var(--neon-purple);
         }
 
-        /* --- 💎 Store Button: Glass & Continuous Shine 💎 --- */
+        /* Store Button Shine */
         .store-btn { 
             background: linear-gradient(90deg, #4a00e0, #8e2de2); 
-            border: 1px solid rgba(255, 255, 255, 0.3); /* حافة زجاجية */
-            position: relative;
-            overflow: hidden;
-            /* لمعة داخلية وخارجية خفيفة لبروز الزجاج */
+            border: 1px solid rgba(255, 255, 255, 0.3); 
+            position: relative; overflow: hidden;
             box-shadow: 0 0 15px rgba(157, 0, 255, 0.3), inset 0 2px 4px rgba(255, 255, 255, 0.3);
         }
-        /* تأثير اللمعان التلقائي */
         .store-btn::after {
-            content: '';
-            position: absolute;
-            top: 0; left: -150%;
-            width: 50%; height: 100%;
+            content: ''; position: absolute; top: 0; left: -150%; width: 50%; height: 100%;
             background: linear-gradient(to right, rgba(255,255,255,0) 0%, rgba(255,255,255,0.5) 50%, rgba(255,255,255,0) 100%);
-            transform: skewX(-25deg);
-            animation: storeBtnShine 3s infinite; /* يتحرك كل 3 ثواني باستمرار */
-            pointer-events: none;
+            transform: skewX(-25deg); animation: storeBtnShine 3s infinite; pointer-events: none;
         }
-        @keyframes storeBtnShine {
-            0% { left: -150%; }
-            20%, 100% { left: 150%; }
+        @keyframes storeBtnShine { 0% { left: -150%; } 20%, 100% { left: 150%; } }
+
+        /* أيقونات الأزرار الجديدة وتوهجاتها */
+        .btn-icon {
+            width: 24px;
+            height: 24px;
+            margin-right: 12px;
+            object-fit: contain;
         }
+        
+        /* توهج منطقي للتيك توك (بدل الأسود اللي ما يبين) */
+        .glow-tiktok { filter: drop-shadow(0 0 8px rgba(0, 243, 255, 0.8)); }
+        
+        /* توهج أزرق للتلجرام */
+        .glow-telegram { filter: drop-shadow(0 0 8px #00f3ff); }
+        
+        /* توهج وردي للانستقرام */
+        .glow-instagram { filter: drop-shadow(0 0 8px #ff007f); }
 
         .visitor-badge { margin-top: 30px; font-size: 12px; color: rgba(255, 255, 255, 0.6); }
         .visitor-badge span { color: #d866ff; font-weight: bold; }
@@ -252,9 +258,9 @@
 
         <div class="links-wrapper">
             <a href="#" class="link-btn store-btn">🛒 Online Store</a>
-            <a href="#" class="link-btn">📱 TikTok</a>
-            <a href="#" class="link-btn" id="telegram-btn">💬 Telegram</a>
-            <a href="#" class="link-btn">📸 Instagram</a>
+            <a href="#" class="link-btn"><img src="tik.png" alt="TikTok" class="btn-icon glow-tiktok"> TikTok</a>
+            <a href="#" class="link-btn" id="telegram-btn"><img src="tly.png" alt="Telegram" class="btn-icon glow-telegram"> Telegram</a>
+            <a href="#" class="link-btn"><img src="ins.png" alt="Instagram" class="btn-icon glow-instagram"> Instagram</a>
         </div>
 
         <div class="visitor-badge">👁 Visitors: <span id="vCount">0</span></div>
@@ -409,4 +415,3 @@
     </script>
 </body>
 </html>
-
