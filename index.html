@@ -23,9 +23,16 @@
         body {
             background-color: var(--bg-dark);
             min-height: 100vh;
-            display: flex; justify-content: center; align-items: center;
-            padding: 40px 20px; color: #fff;
-            overflow: hidden; position: relative;
+            display: flex; 
+            flex-direction: column;
+            /* التعديل الجذري: يبدأ من فوق ويسمح بالنزول */
+            justify-content: flex-start; 
+            align-items: center;
+            /* مسافة 90 بكسل من فوق عشان شعار افتر افكتس والروبوت يظهرون كاملين */
+            padding: 90px 20px 50px; 
+            color: #fff;
+            overflow-x: hidden; /* يمنع تحرك الشاشة يمين ويسار فقط */
+            position: relative;
             font-family: 'Tajawal', sans-serif;
         }
 
@@ -47,11 +54,9 @@
             position: absolute; z-index: 150; 
             width: 120px; pointer-events: none;
         }
+        /* الشعار الحين بيظهر كامل لأن الشاشة تبدأ من فوق */
         .bg-ae { top: 20px; right: 20px; filter: drop-shadow(0 0 25px var(--neon-purple)); animation: float 6s infinite; }
-        
-        /* تم رفع شعار لايت موشن للأعلى ليظهر بشكل كامل */
-        .bg-am { bottom: 85px; left: 25px; border-radius: 50%; filter: drop-shadow(0 0 25px var(--neon-green-dark)); animation: float 7s infinite reverse; }
-        
+        .bg-am { bottom: 85px; left: 20px; border-radius: 50%; filter: drop-shadow(0 0 25px var(--neon-green-dark)); animation: float 7s infinite reverse; }
         @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-15px); } }
 
         /* --- 3. Main Glass Container --- */
@@ -63,6 +68,8 @@
             position: relative; z-index: 100;
             box-shadow: 0 0 40px rgba(157, 0, 255, 0.1), inset 0 0 10px rgba(255, 255, 255, 0.05);
             overflow: hidden;
+            /* لضمان توسيطها دايم */
+            margin: 0 auto; 
         }
 
         #innerBouncingCanvas {
@@ -148,10 +155,7 @@
             object-fit: contain;
         }
         
-        .btn-icon-telegram {
-            transform: scale(1.3);
-        }
-        
+        .btn-icon-telegram { transform: scale(1.3); }
         .glow-tiktok { filter: drop-shadow(0 0 8px rgba(220, 220, 220, 0.9)); }
         .glow-telegram { filter: drop-shadow(0 0 8px #00f3ff); }
         .glow-instagram { filter: drop-shadow(0 0 8px #ff007f); }
@@ -165,37 +169,26 @@
 
         /* --- 7. Glass Visitor Badge --- */
         .visitor-badge-container {
-            margin-top: 35px;
-            display: flex;
-            justify-content: center;
+            margin-top: 35px; display: flex; justify-content: center;
         }
-        
         .visitor-badge {
-            display: inline-flex;
-            align-items: center;
-            padding: 10px 25px;
-            font-size: 14px;
-            color: rgba(255, 255, 255, 0.8);
+            display: inline-flex; align-items: center; padding: 10px 25px;
+            font-size: 14px; color: rgba(255, 255, 255, 0.8);
             background: rgba(255, 255, 255, 0.03);
-            backdrop-filter: blur(15px);
-            -webkit-backdrop-filter: blur(15px);
-            border: 1px solid rgba(255, 255, 255, 0.15);
-            border-radius: 20px;
+            backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.15); border-radius: 20px;
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2), inset 0 0 10px rgba(255, 255, 255, 0.05);
             letter-spacing: 1px;
         }
-        
         .visitor-badge span { 
-            color: #d866ff; 
-            font-weight: 900; 
-            margin-left: 5px;
-            text-shadow: 0 0 8px rgba(216, 102, 255, 0.6);
-            font-size: 15px;
+            color: #d866ff; font-weight: 900; margin-left: 5px;
+            text-shadow: 0 0 8px rgba(216, 102, 255, 0.6); font-size: 15px;
         }
 
         /* --- 8. Cyber Robot CSS --- */
         .robot-wrapper {
-            position: fixed; top: 15px; left: 50%; margin-left: -22.5px; 
+            /* التعديل: Absolute عشان يتحرك مع الصفحة ومسافة من فوق */
+            position: absolute; top: 15px; left: 50%; margin-left: -22.5px; 
             width: var(--robot-size); height: var(--robot-size);
             z-index: 9999; touch-action: none; cursor: grab;
         }
@@ -275,6 +268,20 @@
     <img src="ae.png" alt="AE" class="bg-icon bg-ae">
     <img src="am.png" alt="AM" class="bg-icon bg-am">
 
+    <div id="cyber-robot" class="robot-wrapper">
+        <div class="robot-mesh">
+            <div class="robot-body">
+                <div class="eyes-container">
+                    <div class="robot-eye"></div>
+                    <div class="robot-eye"></div>
+                </div>
+                <div class="robot-mouth"></div>
+            </div>
+            <div class="robot-propeller"></div>
+            <div id="robot-laser" class="light-beam"></div>
+        </div>
+    </div>
+
     <div class="container" id="mainContainer">
         <canvas id="innerBouncingCanvas"></canvas>
 
@@ -294,20 +301,6 @@
 
         <div class="visitor-badge-container">
             <div class="visitor-badge">👁 Visitors: <span id="vCount">0</span></div>
-        </div>
-    </div>
-
-    <div id="cyber-robot" class="robot-wrapper">
-        <div class="robot-mesh">
-            <div class="robot-body">
-                <div class="eyes-container">
-                    <div class="robot-eye"></div>
-                    <div class="robot-eye"></div>
-                </div>
-                <div class="robot-mouth"></div>
-            </div>
-            <div class="robot-propeller"></div>
-            <div id="robot-laser" class="light-beam"></div>
         </div>
     </div>
 
@@ -383,6 +376,7 @@
             if(!telegramBtn) return;
             const targetRect = telegramBtn.getBoundingClientRect();
             const robotRect = robot.getBoundingClientRect();
+            // تعديل بسيط لحساب المسافة بدقة بعد السماح بالنزول
             const moveX = targetRect.left - robotRect.left - 80; 
             const moveY = targetRect.top - robotRect.top + 10;
             
@@ -423,15 +417,16 @@
             robotMesh.classList.add('robot-spin', 'robot-red-theme');
             setTimeout(() => { robotMesh.classList.remove('robot-spin', 'robot-red-theme'); }, 500);
             
-            initialX = e.touches[0].clientX - xOffset;
-            initialY = e.touches[0].clientY - yOffset;
+            // استخدام pageX و pageY لحل مشكلة السحب وقت النزول
+            initialX = e.touches[0].pageX - xOffset;
+            initialY = e.touches[0].pageY - yOffset;
             robot.style.transition = 'none';
         });
 
         robot.addEventListener('touchmove', (e) => {
             isDragging = true; e.preventDefault();
-            const currentX = e.touches[0].clientX - initialX;
-            const currentY = e.touches[0].clientY - initialY;
+            const currentX = e.touches[0].pageX - initialX;
+            const currentY = e.touches[0].pageY - initialY;
             xOffset = currentX; yOffset = currentY;
             robot.style.transform = `translate(${currentX}px, ${currentY}px)`;
         }, { passive: false });
