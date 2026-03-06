@@ -66,7 +66,7 @@
             position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 0; pointer-events: none;
         }
 
-        .logo-container, .title-img, .tagline, .links-wrapper, .visitor-badge { position: relative; z-index: 10; }
+        .logo-container, .title-img, .links-wrapper, .visitor-badge { position: relative; z-index: 10; }
 
         /* --- 4. Logo & Glitch --- */
         .logo-container {
@@ -79,14 +79,39 @@
         .glitch { animation: glitch 5s infinite; }
         @keyframes glitch { 0%, 92%, 100% { filter: none; transform: translate(0); } 94% { filter: brightness(1.8) hue-rotate(20deg); transform: translate(2px, -2px); } 96% { filter: contrast(2); transform: translate(-2px, 2px); } }
 
-        .tagline {
-            font-family: 'Montserrat', sans-serif; font-size: 13px; color: #d866ff; 
-            font-weight: 900; text-transform: uppercase; margin-bottom: 30px;
-            border-bottom: 2px solid rgba(157, 0, 255, 0.3); display: inline-block; 
-            padding-bottom: 5px; text-shadow: 0 0 10px rgba(157, 0, 255, 0.5);
+        /* --- 5. NEW: Premium Crystal Glass Panel --- */
+        .crystal-panel {
+            position: relative; z-index: 10;
+            margin: 5px auto 30px; padding: 12px 25px;
+            background: rgba(255, 255, 255, 0.02);
+            backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px);
+            border-radius: 12px; overflow: hidden; display: inline-block;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+        .crystal-panel::before {
+            content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+            border-radius: 12px; padding: 1px;
+            background: linear-gradient(135deg, var(--neon-purple), transparent, rgba(0, 243, 255, 0.2));
+            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor; mask-composite: exclude; pointer-events: none;
+        }
+        .crystal-panel::after {
+            content: ''; position: absolute; top: 0; left: -150%;
+            width: 50%; height: 100%;
+            background: linear-gradient(to right, rgba(255,255,255,0) 0%, rgba(255,255,255,0.2) 50%, rgba(255,255,255,0) 100%);
+            transform: skewX(-25deg); animation: glassShimmer 4s infinite; pointer-events: none;
+        }
+        @keyframes glassShimmer { 0% { left: -150%; } 20%, 100% { left: 150%; } }
+        
+        .crystal-text {
+            font-family: 'Montserrat', sans-serif; font-weight: 900; font-size: 14px;
+            letter-spacing: 2px; text-transform: uppercase;
+            background: linear-gradient(180deg, #ffffff 0%, #9aa0a6 100%);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+            filter: drop-shadow(0px 2px 3px rgba(0, 0, 0, 0.8)); position: relative; z-index: 2;
         }
 
-        /* --- 5. Buttons --- */
+        /* --- 6. Buttons --- */
         .links-wrapper { display: flex; flex-direction: column; gap: 15px; }
         .link-btn {
             display: flex; align-items: center; justify-content: center;
@@ -109,16 +134,14 @@
             border-color: #00f3ff !important; transform: scale(1.05) !important;
         }
 
-        /* --- 6. Cyber Robot (Improved Logic) --- */
-        /* الغلاف الخارجي المسؤول عن الموقع والسحب */
+        /* --- 7. Cyber Robot CSS --- */
         .robot-wrapper {
-            position: fixed; top: 15px; left: 50%; margin-left: -22.5px; /* يضعه فوق اللوجو */
+            position: fixed; top: 15px; left: 50%; margin-left: -22.5px; 
             width: var(--robot-size); height: var(--robot-size);
             z-index: 9999; touch-action: none; cursor: grab;
         }
         .robot-wrapper:active { cursor: grabbing; }
 
-        /* الغلاف الداخلي المسؤول عن حركة الطفو */
         .robot-mesh {
             position: relative; width: 100%; height: 100%;
             animation: robotIdle 3s ease-in-out infinite;
@@ -130,7 +153,6 @@
             border: 1px solid rgba(255, 255, 255, 0.3); transition: background 0.3s, box-shadow 0.3s;
         }
 
-        /* العيون */
         .eyes-container {
             display: flex; justify-content: space-between; width: 22px;
             position: absolute; top: 30%; left: 50%; transform: translateX(-50%);
@@ -140,7 +162,6 @@
             box-shadow: 0 0 8px #00f3ff; animation: blink 4s infinite;
         }
 
-        /* الفم (يبتسم، يسكر، يحزن) */
         .robot-mouth {
             width: 14px; height: 6px; position: absolute; bottom: 25%; left: 50%; transform: translateX(-50%);
             border-bottom: 2px solid #00f3ff; border-radius: 0 0 10px 10px;
@@ -153,7 +174,6 @@
             border-radius: 2px; animation: spinBlade 0.1s linear infinite;
         }
 
-        /* كشاف الإضاءة الجديد */
         .light-beam {
             position: absolute; top: 50%; left: 22px; height: 35px;
             background: linear-gradient(to right, rgba(0, 243, 255, 0.8), rgba(0, 243, 255, 0));
@@ -165,12 +185,11 @@
         @keyframes spinBlade { 0% { transform: translateX(-50%) rotateY(0deg); } 100% { transform: translateX(-50%) rotateY(360deg); } }
         @keyframes blink { 0%, 96%, 98% { transform: scaleY(1); } 97% { transform: scaleY(0.1); } }
         
-        /* حركة الفم */
         @keyframes mouthExpressions {
-            0%, 40% { border-bottom: 2px solid #00f3ff; border-top: none; border-radius: 0 0 10px 10px; height: 6px; } /* ابتسامة */
-            45%, 55% { border-bottom: 2px solid #00f3ff; border-top: none; border-radius: 0; height: 0px; box-shadow: 0 0 5px #00f3ff;} /* مغلق */
-            60%, 90% { border-top: 2px solid #00f3ff; border-bottom: none; border-radius: 10px 10px 0 0; height: 6px; } /* زعلان */
-            95%, 100% { border-bottom: 2px solid #00f3ff; border-top: none; border-radius: 0 0 10px 10px; height: 6px; } /* يرجع يبتسم */
+            0%, 40% { border-bottom: 2px solid #00f3ff; border-top: none; border-radius: 0 0 10px 10px; height: 6px; } 
+            45%, 55% { border-bottom: 2px solid #00f3ff; border-top: none; border-radius: 0; height: 0px; box-shadow: 0 0 5px #00f3ff;} 
+            60%, 90% { border-top: 2px solid #00f3ff; border-bottom: none; border-radius: 10px 10px 0 0; height: 6px; } 
+            95%, 100% { border-bottom: 2px solid #00f3ff; border-top: none; border-radius: 0 0 10px 10px; height: 6px; } 
         }
 
         .robot-spin { animation: quickSpin 0.5s ease-out !important; }
@@ -202,7 +221,10 @@
 
         <div class="logo-container"><img src="lg.png" alt="Avatar" class="logo"></div>
         <img src="vr.png" alt="VORTX" class="title-img glitch">
-        <p class="tagline">After Effects Templates & Motion Design Tools</p>
+        
+        <div class="crystal-panel">
+            <span class="crystal-text">Master Your Motion</span>
+        </div>
 
         <div class="links-wrapper">
             <a href="#" class="link-btn store-btn">🛒 Online Store</a>
@@ -279,7 +301,6 @@
 
         const flash = document.getElementById('flash');
         document.addEventListener('click', (e) => {
-            // منع وميض الشاشة إذا كان الضغط على الروبوت
             if (e.target.closest('#cyber-robot')) return;
             flash.style.opacity = '1'; setTimeout(() => { flash.style.opacity = '0'; }, 100);
         });
@@ -289,7 +310,7 @@
             document.body.style.transform = `translate(${x}px, ${y}px)`;
         });
 
-        // --- 4. Cyber Robot Logic (Fixed Drag & Interaction) ---
+        // --- 4. Cyber Robot Logic ---
         const robot = document.getElementById('cyber-robot');
         const robotMesh = document.querySelector('.robot-mesh');
         const laser = document.getElementById('robot-laser');
@@ -297,20 +318,16 @@
         let isDragging = false;
         let xOffset = 0, yOffset = 0;
 
-        // Intro Mission
         setTimeout(() => {
             if(!telegramBtn) return;
             const targetRect = telegramBtn.getBoundingClientRect();
             const robotRect = robot.getBoundingClientRect();
-            
-            // تحريك الغلاف الخارجي
             const moveX = targetRect.left - robotRect.left - 80; 
             const moveY = targetRect.top - robotRect.top + 10;
             
             robot.style.transition = 'transform 1.5s ease-in-out';
             robot.style.transform = `translate(${moveX}px, ${moveY}px)`;
             
-            // تحديث قيم الـ Offset عشان السحب لاحقاً يكون صحيح
             xOffset = moveX; yOffset = moveY;
             
             setTimeout(() => {
@@ -323,34 +340,31 @@
                 laser.style.width = `${distance}px`;
                 laser.style.transform = `rotate(${angle}deg)`;
                 laser.style.opacity = '1';
-                telegramBtn.classList.add('btn-blue-reaction'); // يضوي الزر
+                telegramBtn.classList.add('btn-blue-reaction');
                 
                 setTimeout(() => {
                     laser.style.opacity = '0';
                     telegramBtn.classList.remove('btn-blue-reaction');
                     
                     robot.style.transform = `translate(0px, 0px)`;
-                    xOffset = 0; yOffset = 0; // تصفير القيم لما يرجع لبيته
+                    xOffset = 0; yOffset = 0;
                 }, 2000); 
             }, 1500); 
         }, 1000);
 
-        // Touch Interaction (Drag & Tap)
         let initialX, initialY;
 
         robot.addEventListener('touchstart', (e) => {
             if(isDragging) return;
-            e.stopPropagation(); // يمنع تأثير الوميض البنفسجي للشاشة
+            e.stopPropagation(); 
             
-            // Tap Interaction (تغيير للون الأحمر ولفة سريعة)
             robotMesh.classList.remove('robot-shake');
             robotMesh.classList.add('robot-spin', 'robot-red-theme');
             setTimeout(() => { robotMesh.classList.remove('robot-spin', 'robot-red-theme'); }, 500);
             
-            // إعداد السحب
             initialX = e.touches[0].clientX - xOffset;
             initialY = e.touches[0].clientY - yOffset;
-            robot.style.transition = 'none'; // يمنع التعليق وقت السحب
+            robot.style.transition = 'none';
         });
 
         robot.addEventListener('touchmove', (e) => {
@@ -358,20 +372,17 @@
             const currentX = e.touches[0].clientX - initialX;
             const currentY = e.touches[0].clientY - initialY;
             xOffset = currentX; yOffset = currentY;
-            
             robot.style.transform = `translate(${currentX}px, ${currentY}px)`;
         }, { passive: false });
 
         robot.addEventListener('touchend', () => {
             if(isDragging) {
-                // الحين يثبت مكانه وما يطيح! بس ينفض نفسه
                 robotMesh.classList.add('robot-shake');
-                setTimeout(() => {
-                    robotMesh.classList.remove('robot-shake');
-                }, 600);
+                setTimeout(() => { robotMesh.classList.remove('robot-shake'); }, 600);
                 isDragging = false;
             }
         });
     </script>
 </body>
 </html>
+
