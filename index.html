@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>VORTX | Fixed Edition</title>
+    <title>VORTX | Pro Edition</title>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;900&family=Tajawal:wght@400;700&display=swap" rel="stylesheet">
     <style>
         :root {
@@ -22,13 +22,21 @@
             padding: 40px 20px; color: #fff;
             overflow: hidden; position: relative;
             font-family: 'Tajawal', sans-serif;
-            /* Cursor is back to normal */
         }
 
-        /* --- 1. Corner Icons Fix --- */
+        /* --- المطر الخفيف في الخلفية --- */
+        #rainCanvas {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100vw; height: 100vh;
+            z-index: 1; /* ورا المستطيل */
+            pointer-events: none;
+        }
+
+        /* --- الشعارات (فوق المستطيل مباشرة) --- */
         .bg-icon {
             position: absolute;
-            z-index: 150; /* Higher than container to be ON TOP */
+            z-index: 150; 
             width: 120px;
             pointer-events: none;
         }
@@ -40,7 +48,7 @@
         }
 
         .bg-am {
-            bottom: 20px; left: 20px; /* Positioned on top of container area */
+            bottom: 20px; left: 20px;
             border-radius: 50%;
             filter: drop-shadow(0 0 25px var(--neon-green-dark));
             animation: float 7s infinite reverse;
@@ -48,21 +56,24 @@
 
         @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-15px); } }
 
-        /* --- 2. Main Glass Container --- */
+        /* --- المستطيل الزجاجي العاكس (المراية) --- */
         .container {
-            background: rgba(15, 5, 25, 0.85);
-            backdrop-filter: blur(20px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            /* تدرج شفاف يعطي لمعة الزجاج من فوق وظلام من تحت */
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.08) 0%, rgba(15, 5, 25, 0.6) 100%);
+            backdrop-filter: blur(25px) saturate(150%);
+            -webkit-backdrop-filter: blur(25px) saturate(150%);
+            border: 1px solid rgba(255, 255, 255, 0.15);
             border-radius: 30px;
             padding: 50px 30px;
             width: 100%; max-width: 440px;
             text-align: center;
             position: relative;
-            z-index: 100; /* Lower than bg-icons to keep them on top */
-            box-shadow: 0 0 40px rgba(157, 0, 255, 0.2);
+            z-index: 100;
+            /* انعكاس داخلي (inset) يعطي واقعية للمراية */
+            box-shadow: 0 0 40px rgba(157, 0, 255, 0.2), inset 0 0 20px rgba(255, 255, 255, 0.05);
         }
 
-        /* --- 3. Logo & Glitch --- */
+        /* --- اللوجو وتأثير Glitch --- */
         .logo-container {
             width: 140px; height: 140px; margin: 0 auto 15px;
             border-radius: 50%; padding: 4px;
@@ -92,7 +103,7 @@
             display: inline-block; padding-bottom: 5px;
         }
 
-        /* --- 4. Buttons --- */
+        /* --- الأزرار --- */
         .links-wrapper { display: flex; flex-direction: column; gap: 15px; }
 
         .link-btn {
@@ -123,6 +134,8 @@
 </head>
 <body>
 
+    <canvas id="rainCanvas"></canvas>
+
     <img src="ae.png" alt="AE" class="bg-icon bg-ae">
     <img src="am.png" alt="AM" class="bg-icon bg-am">
 
@@ -146,18 +159,57 @@
     </div>
 
     <script>
-        // 1. Visitor Counter Logic
-        let count = localStorage.getItem('v_stable_v3') || 1500;
-        count = parseInt(count) + 1;
-        localStorage.setItem('v_stable_v3', count);
-        document.getElementById('vCount').innerText = count.toLocaleString();
+        // 1. حركة المطر البطيئة
+        const rainCanvas = document.getElementById('rainCanvas');
+        const ctx = rainCanvas.getContext('2d');
+        rainCanvas.width = window.innerWidth;
+        rainCanvas.height = window.innerHeight;
 
-        // 2. Parallax Background Movement
+        const particles = [];
+        for (let i = 0; i < 60; i++) {
+            particles.push({
+                x: Math.random() * rainCanvas.width,
+                y: Math.random() * rainCanvas.height,
+                size: Math.random() * 2,
+                speedY: Math.random() * 0.4 + 0.1, // حركة بطيئة جداً
+                opacity: Math.random() * 0.5 + 0.1
+            });
+        }
+
+        function animateRain() {
+            ctx.clearRect(0, 0, rainCanvas.width, rainCanvas.height);
+            particles.forEach(p => {
+                ctx.fillStyle = `rgba(157, 0, 255, ${p.opacity})`;
+                ctx.beginPath();
+                ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+                ctx.fill();
+                p.y += p.speedY;
+                if (p.y > rainCanvas.height) {
+                    p.y = 0;
+                    p.x = Math.random() * rainCanvas.width;
+                }
+            });
+            requestAnimationFrame(animateRain);
+        }
+        animateRain();
+
+        window.addEventListener('resize', () => {
+            rainCanvas.width = window.innerWidth;
+            rainCanvas.height = window.innerHeight;
+        });
+
+        // 2. حركة Parallax للموقع كامل مع الماوس
         document.addEventListener("mousemove", e => {
-            const x = (window.innerWidth/2 - e.clientX)/60;
-            const y = (window.innerHeight/2 - e.clientY)/60;
+            const x = (window.innerWidth / 2 - e.clientX) / 60;
+            const y = (window.innerHeight / 2 - e.clientY) / 60;
             document.body.style.transform = `translate(${x}px, ${y}px)`;
         });
+
+        // 3. عداد الزوار
+        let count = localStorage.getItem('v_stable_v4') || 1500;
+        count = parseInt(count) + 1;
+        localStorage.setItem('v_stable_v4', count);
+        document.getElementById('vCount').innerText = count.toLocaleString();
     </script>
 </body>
 </html>
