@@ -3,12 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>VORTX | Enhanced Portfolio</title>
+    <title>VORTX | Pro Edition</title>
     <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700;900&display=swap" rel="stylesheet">
     <style>
         :root {
             --neon-purple: #9d00ff;
             --neon-blue: #00f3ff;
+            --neon-green-glow: #004d00; /* 🟢 Alight Motion Brand Glow */
             --bg-dark: #0b001a;
         }
 
@@ -31,18 +32,16 @@
             position: relative;
         }
 
-        /* --- 2. Electric Sparks VFX (Background Particles) --- */
+        /* Background Sparks (External) */
         #sparkCanvas {
             position: fixed;
-            top: 0;
-            left: 0;
-            width: 100vw;
-            height: 100vh;
+            top: 0; left: 0;
+            width: 100vw; height: 100vh;
             z-index: -1;
             pointer-events: none;
         }
 
-        /* --- 1. Maintain Existing Layout (Diagonal Icons) --- */
+        /* --- 1. Maintain Positions --- */
         .bg-icon {
             position: absolute;
             z-index: -1; 
@@ -50,58 +49,53 @@
             opacity: 0.95;
         }
 
-        /* Top-Right After Effects */
         .bg-ae {
-            top: -45px; 
-            right: -45px;
+            top: -45px; right: -45px;
             width: 130px;
             border-radius: 18px;
-            filter: drop-shadow(0 0 35px var(--neon-purple)) brightness(1.2);
+            filter: drop-shadow(0 0 35px var(--neon-purple));
             animation: floatAE 6s ease-in-out infinite;
         }
 
-        /* Bottom-Left Alight Motion */
         .bg-am {
-            bottom: -45px; 
-            left: -45px;
+            bottom: -45px; left: -45px;
             width: 115px;
             border-radius: 50%;
-            filter: saturate(0.8) drop-shadow(0 0 25px var(--neon-purple));
+            /* 🟢 Changed glow to Dark Green per request */
+            filter: drop-shadow(0 0 30px var(--neon-green-glow));
             animation: floatAM 7s ease-in-out infinite;
         }
 
         @keyframes floatAE { 0%, 100% { transform: translateY(0) rotate(15deg); } 50% { transform: translateY(-15px) rotate(20deg); } }
         @keyframes floatAM { 0%, 100% { transform: translateY(0) rotate(-10deg); } 50% { transform: translateY(15px) rotate(-15deg); } }
 
-        /* --- 2. Advanced Glassmorphism Container --- */
+        /* --- 2. Main Glass Container --- */
         .container {
             background: linear-gradient(135deg, rgba(255, 255, 255, 0.05) 0%, rgba(20, 5, 35, 0.75) 100%);
-            backdrop-filter: blur(25px) saturate(160%); /* Increased Blur */
+            backdrop-filter: blur(25px) saturate(160%);
             -webkit-backdrop-filter: blur(25px) saturate(160%);
-            
-            /* Sharp Reflection Border */
             border: 1px solid rgba(255, 255, 255, 0.15); 
             border-radius: 25px;
-            
             padding: 45px 30px;
             width: 100%;
             max-width: 440px;
             text-align: center;
             position: relative;
             z-index: 10;
-            box-shadow: 0 0 50px rgba(157, 0, 255, 0.2), inset 0 0 15px rgba(255, 255, 255, 0.05);
-            animation: cardEntrance 0.8s ease-out forwards;
+            box-shadow: 0 0 50px rgba(157, 0, 255, 0.2);
+            overflow: hidden; /* Important for inner particles */
         }
 
-        @keyframes cardEntrance {
-            0% { opacity: 0; transform: translateY(30px); }
-            100% { opacity: 1; transform: translateY(0); }
+        /* --- Inner Particles (Behind content) --- */
+        #innerParticles {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            z-index: -1; /* Stay behind everything inside */
         }
 
-        /* --- Central Gojo Avatar --- */
         .logo-container {
-            width: 145px;
-            height: 145px;
+            width: 145px; height: 145px;
             margin: 0 auto 15px;
             border-radius: 50%;
             padding: 4px;
@@ -111,40 +105,34 @@
 
         .logo { width: 100%; height: 100%; border-radius: 50%; object-fit: cover; border: 3px solid #0b001a; }
 
-        /* --- VORTX Logo --- */
         .title-img {
-            width: 85%;
-            max-width: 250px;
+            width: 85%; max-width: 250px;
             margin: 5px auto 10px;
             display: block;
             filter: drop-shadow(0 0 15px var(--neon-purple));
         }
 
-        /* --- 2. Sub-headline Update --- */
+        /* --- 2. Tagline Styling --- */
         .bio { 
             font-size: 15px; 
-            color: #d1d1d1; 
+            color: #fff; 
+            font-weight: 700; /* Bold */
+            display: inline-block;
             margin-bottom: 30px; 
-            letter-spacing: 0.5px;
-            font-weight: 400;
+            padding-bottom: 10px; /* 10px gap */
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2); /* Semi-transparent underline */
         }
 
-        /* --- Buttons --- */
         .links-wrapper { display: flex; flex-direction: column; gap: 14px; }
 
         .link-btn {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-decoration: none;
-            color: #fff;
+            display: flex; align-items: center; justify-content: center;
+            text-decoration: none; color: #fff;
             background: rgba(255, 255, 255, 0.03);
-            padding: 16px 20px;
-            border-radius: 14px;
-            font-size: 17px;
-            font-weight: 700;
+            padding: 16px 20px; border-radius: 14px;
+            font-size: 17px; font-weight: 700;
             border: 1px solid rgba(157, 0, 255, 0.2);
-            transition: 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            transition: 0.3s ease;
         }
 
         .link-btn:hover {
@@ -156,7 +144,6 @@
 
         .store-btn { background: linear-gradient(90deg, #4a00e0, #8e2de2); border: none; }
 
-        /* --- 2. Glassmorphic Visitor Badge --- */
         .visitor-badge {
             display: inline-block;
             margin-top: 30px;
@@ -166,11 +153,7 @@
             border-radius: 20px;
             font-size: 13px;
             color: rgba(255, 255, 255, 0.7);
-            backdrop-filter: blur(5px);
-            box-shadow: inset 0 0 10px rgba(0, 243, 255, 0.05);
         }
-        .visitor-badge span { color: var(--neon-blue); font-weight: bold; margin-left: 4px; }
-
     </style>
 </head>
 <body>
@@ -180,6 +163,8 @@
     <div class="container">
         <img src="ae.png" alt="AE" class="bg-icon bg-ae">
         <img src="am.png" alt="AM" class="bg-icon bg-am">
+
+        <canvas id="innerParticles"></canvas>
 
         <div class="logo-container">
             <img src="lg.png" alt="Avatar" class="logo">
@@ -196,75 +181,81 @@
             <a href="#" class="link-btn">📸 Instagram</a>
         </div>
 
-        <div class="visitor-badge">
-            👁 Visitors: <span id="visitCount">0</span>
-        </div>
+        <div class="visitor-badge">👁 Visitors: <span id="visitCount">0</span></div>
     </div>
 
     <script>
-        // Visitor Counter Logic
-        document.addEventListener("DOMContentLoaded", () => {
-            let visits = localStorage.getItem('vortx_pro_count') || 1024;
-            visits = parseInt(visits) + 1;
-            localStorage.setItem('vortx_pro_count', visits);
-            document.getElementById('visitCount').innerText = visits;
-        });
+        // Visitor Counter
+        document.getElementById('visitCount').innerText = Math.floor(Math.random() * 500) + 1200;
 
-        // --- 2. Optimized Electric Sparks VFX ---
-        const canvas = document.getElementById('sparkCanvas');
-        const ctx = canvas.getContext('2d');
-        let sparks = [];
+        // --- Inner Particles Logic ---
+        const innerCanvas = document.getElementById('innerParticles');
+        const iCtx = innerCanvas.getContext('2d');
+        let iP = [];
 
-        function resize() {
-            canvas.width = window.innerWidth;
-            canvas.height = window.innerHeight;
+        function resizeInner() {
+            innerCanvas.width = innerCanvas.offsetWidth;
+            innerCanvas.height = innerCanvas.offsetHeight;
         }
 
-        class Spark {
+        class InnerP {
             constructor() {
-                this.init();
-            }
-            init() {
-                this.x = Math.random() * canvas.width;
-                this.y = Math.random() * canvas.height;
-                this.size = Math.random() * 2 + 1;
-                this.speedX = (Math.random() - 0.5) * 1.5;
-                this.speedY = (Math.random() - 0.5) * 1.5;
-                this.opacity = Math.random() * 0.8;
-            }
-            update() {
-                this.x += this.speedX;
-                this.y += this.speedY;
-                if (this.x < 0 || this.x > canvas.width || this.y < 0 || this.y > canvas.height) {
-                    this.init();
-                }
+                this.x = Math.random() * innerCanvas.width;
+                this.y = Math.random() * innerCanvas.height;
+                this.size = Math.random() * 1.5;
+                this.vY = Math.random() * 0.3 + 0.1;
             }
             draw() {
-                ctx.fillStyle = `rgba(157, 0, 255, ${this.opacity})`;
-                ctx.shadowBlur = 10;
-                ctx.shadowColor = "#9d00ff";
-                ctx.beginPath();
-                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-                ctx.fill();
+                iCtx.fillStyle = 'rgba(157, 0, 255, 0.4)';
+                iCtx.beginPath();
+                iCtx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                iCtx.fill();
+            }
+            update() {
+                this.y -= this.vY;
+                if (this.y < 0) this.y = innerCanvas.height;
             }
         }
 
-        function setup() {
-            sparks = [];
-            const count = window.innerWidth < 768 ? 40 : 80; // Mobile Optimization
-            for (let i = 0; i < count; i++) sparks.push(new Spark());
+        function initInner() {
+            iP = [];
+            for(let i=0; i<30; i++) iP.push(new InnerP());
         }
 
-        function animate() {
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-            sparks.forEach(s => { s.update(); s.draw(); });
-            requestAnimationFrame(animate);
+        function animInner() {
+            iCtx.clearRect(0,0,innerCanvas.width, innerCanvas.height);
+            iP.forEach(p => { p.update(); p.draw(); });
+            requestAnimationFrame(animInner);
         }
 
-        window.addEventListener('resize', () => { resize(); setup(); });
-        resize();
-        setup();
-        animate();
+        window.addEventListener('resize', resizeInner);
+        resizeInner(); initInner(); animInner();
+
+        // --- Background Sparks Logic (Simplified for performance) ---
+        const canvas = document.getElementById('sparkCanvas');
+        const ctx = canvas.getContext('2d');
+        canvas.width = window.innerWidth; canvas.height = window.innerHeight;
+        let sparks = [];
+        for(let i=0; i<50; i++) {
+            sparks.push({
+                x: Math.random()*canvas.width, y: Math.random()*canvas.height,
+                s: Math.random()*2, o: Math.random()*0.6,
+                vx: (Math.random()-0.5)*1, vy: (Math.random()-0.5)*1
+            });
+        }
+        function drawSparks() {
+            ctx.clearRect(0,0,canvas.width, canvas.height);
+            sparks.forEach(s => {
+                s.x += s.vx; s.y += s.vy;
+                if(s.x<0 || s.x>canvas.width) s.vx *= -1;
+                if(s.y<0 || s.y>canvas.height) s.vy *= -1;
+                ctx.fillStyle = `rgba(157, 0, 255, ${s.o})`;
+                ctx.beginPath(); ctx.arc(s.x, s.y, s.s, 0, Math.PI*2); ctx.fill();
+            });
+            requestAnimationFrame(drawSparks);
+        }
+        drawSparks();
     </script>
 </body>
 </html>
+
