@@ -114,12 +114,10 @@
         .title-container { margin: 15px auto 5px; }
         .title-img { 
             width: 85%; max-width: 250px; display: block; margin: 0 auto; 
-            /* التعديل: إضافة توهج بنفسجي قوي خلف اسم فورت اكس */
             filter: drop-shadow(0 0 25px rgba(157, 0, 255, 0.9)); 
         }
         .glitch { animation: glitch 5s infinite; } 
         
-        /* التعديل: دمج التوهج البنفسجي مع حركة الجليتش عشان ما يختفي وقت الرعشة */
         @keyframes glitch { 
             0%, 92%, 100% { filter: drop-shadow(0 0 25px rgba(157, 0, 255, 0.9)); transform: translate(0); } 
             94% { filter: drop-shadow(0 0 25px rgba(157, 0, 255, 0.9)) brightness(1.8) hue-rotate(20deg); transform: translate(2px, -2px); } 
@@ -169,8 +167,8 @@
         .btn-icon { width: 44px; height: 44px; margin-right: 12px; object-fit: contain; pointer-events: none;}
         .btn-icon-telegram { transform: scale(1.3); }
         
-        /* التعديل: تقليل نسبة التكبير للانستقرام لتتناسق مع البقية */
-        .btn-icon-instagram { transform: scale(1.25); } 
+        /* التعديل: تقليل نسبة التكبير للانستقرام لتتناسق مع البقية أكثر */
+        .btn-icon-instagram { transform: scale(1.10); } 
         
         .glow-tiktok { filter: drop-shadow(0 0 8px rgba(220, 220, 220, 0.9)); }
         .glow-telegram { filter: drop-shadow(0 0 8px #00f3ff); }
@@ -184,7 +182,8 @@
         .visitor-badge span { color: #d866ff; font-weight: 900; margin-left: 5px; text-shadow: 0 0 8px rgba(216, 102, 255, 0.6); font-size: 15px; }
 
         /* --- 9. Cyber Robot CSS --- */
-        .robot-wrapper { position: absolute; top: 15px; left: 50%; margin-left: -22.5px; width: var(--robot-size); height: var(--robot-size); z-index: 9999; touch-action: none; cursor: grab; opacity: 0; animation: fadeInIcon 1s ease forwards 0.5s; }
+        /* التعديل: حساب المسافة بحيث يجلس الروبوت بالملي على المستطيل */
+        .robot-wrapper { position: absolute; top: 45px; left: 50%; margin-left: -22.5px; width: var(--robot-size); height: var(--robot-size); z-index: 9999; touch-action: none; cursor: grab; opacity: 0; animation: fadeInIcon 1s ease forwards 0.5s; }
         .robot-wrapper:active { cursor: grabbing; }
         .robot-mesh { position: relative; width: 100%; height: 100%; animation: robotIdle 3s ease-in-out infinite; }
         .robot-body { width: 100%; height: 80%; background: linear-gradient(135deg, #2b004a, var(--robot-color)); border-radius: 12px 12px 8px 8px; position: relative; box-shadow: 0 0 15px var(--robot-color); border: 1px solid rgba(255, 255, 255, 0.3); transition: background 0.3s, box-shadow 0.3s; }
@@ -301,7 +300,6 @@
         setTimeout(() => { resizeInnerCanvas(); animateInnerLines(); }, 100);
 
         // --- 3. REAL Global Visitor Counter ---
-        // التعديل: استخدام API عالمي لحساب الزوار الفعليين بدلاً من الحفظ المحلي
         const counterNamespace = "vortx_official_page"; 
         const counterKey = "total_visits";
 
@@ -400,4 +398,3 @@
     </script>
 </body>
 </html>
-
