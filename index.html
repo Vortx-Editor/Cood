@@ -48,7 +48,7 @@
             pointer-events: none; z-index: 9998; transition: opacity 0.1s;
         }
 
-        /* --- 2. Corner Icons (تم إصلاح الاختفاء) --- */
+        /* --- 2. Corner Icons --- */
         .bg-icon {
             position: absolute; z-index: 150; 
             width: 120px; pointer-events: none;
@@ -104,17 +104,27 @@
         .link-btn:nth-child(4) { animation-delay: 1.25s; } 
         .visitor-badge-container { animation-delay: 1.5s; }
 
-        /* --- 5. Logo & Glitch (تم حل تضارب الأنيميشن هنا) --- */
+        /* --- 5. Logo, VORTX Title Glow & Glitch --- */
         .logo-container {
             width: 140px; height: 140px; margin: 0 auto 15px; border-radius: 50%; padding: 4px;
             background: var(--neon-purple); box-shadow: 0 0 25px var(--neon-purple);
         }
         .logo { width: 100%; height: 100%; border-radius: 50%; object-fit: cover; border: 3px solid #05000a; }
 
-        .title-container { margin: 15px auto 5px; } /* الحاوية للظهور الفخم */
-        .title-img { width: 85%; max-width: 250px; display: block; margin: 0 auto; }
-        .glitch { animation: glitch 5s infinite; } /* الشعار للرعشة فقط */
-        @keyframes glitch { 0%, 92%, 100% { filter: none; transform: translate(0); } 94% { filter: brightness(1.8) hue-rotate(20deg); transform: translate(2px, -2px); } 96% { filter: contrast(2); transform: translate(-2px, 2px); } }
+        .title-container { margin: 15px auto 5px; }
+        .title-img { 
+            width: 85%; max-width: 250px; display: block; margin: 0 auto; 
+            /* التعديل: إضافة توهج بنفسجي قوي خلف اسم فورت اكس */
+            filter: drop-shadow(0 0 25px rgba(157, 0, 255, 0.9)); 
+        }
+        .glitch { animation: glitch 5s infinite; } 
+        
+        /* التعديل: دمج التوهج البنفسجي مع حركة الجليتش عشان ما يختفي وقت الرعشة */
+        @keyframes glitch { 
+            0%, 92%, 100% { filter: drop-shadow(0 0 25px rgba(157, 0, 255, 0.9)); transform: translate(0); } 
+            94% { filter: drop-shadow(0 0 25px rgba(157, 0, 255, 0.9)) brightness(1.8) hue-rotate(20deg); transform: translate(2px, -2px); } 
+            96% { filter: drop-shadow(0 0 25px rgba(157, 0, 255, 0.9)) contrast(2); transform: translate(-2px, 2px); } 
+        }
 
         /* --- 6. Premium Crystal Glass Panel --- */
         .crystal-panel {
@@ -147,7 +157,7 @@
             text-decoration: none; color: #fff; background: rgba(0, 0, 0, 0.5);
             padding: 18px; border-radius: 15px; font-size: 17px; font-weight: 700;
             border: 1px solid rgba(157, 0, 255, 0.3); transition: all 0.3s ease;
-            -webkit-user-drag: none; /* منع سحب الأزرار */
+            -webkit-user-drag: none;
         }
         .link-btn:hover { transform: scale(1.05); box-shadow: 0 0 15px #b400ff, 0 0 30px #7a00ff; border-color: var(--neon-purple); }
         .link-btn:active { transform: scale(0.95) !important; box-shadow: inset 0 0 15px rgba(0,0,0,0.8), 0 0 5px var(--neon-purple) !important; }
@@ -158,7 +168,10 @@
 
         .btn-icon { width: 44px; height: 44px; margin-right: 12px; object-fit: contain; pointer-events: none;}
         .btn-icon-telegram { transform: scale(1.3); }
-        .btn-icon-instagram { transform: scale(1.4); } 
+        
+        /* التعديل: تقليل نسبة التكبير للانستقرام لتتناسق مع البقية */
+        .btn-icon-instagram { transform: scale(1.25); } 
+        
         .glow-tiktok { filter: drop-shadow(0 0 8px rgba(220, 220, 220, 0.9)); }
         .glow-telegram { filter: drop-shadow(0 0 8px #00f3ff); }
         .glow-instagram { filter: drop-shadow(0 0 8px #ff007f); }
@@ -234,14 +247,14 @@
     </div>
 
     <script>
-        // --- Anti-Theft Security (الحماية من النسخ) ---
-        document.addEventListener('contextmenu', event => event.preventDefault()); // منع كليك يمين
+        // --- Anti-Theft Security ---
+        document.addEventListener('contextmenu', event => event.preventDefault()); 
         document.onkeydown = function(e) {
-            if(e.keyCode == 123) return false; // منع F12
+            if(e.keyCode == 123) return false; 
             if(e.ctrlKey && e.shiftKey && e.keyCode == 'I'.charCodeAt(0)) return false; 
             if(e.ctrlKey && e.shiftKey && e.keyCode == 'C'.charCodeAt(0)) return false; 
             if(e.ctrlKey && e.shiftKey && e.keyCode == 'J'.charCodeAt(0)) return false; 
-            if(e.ctrlKey && e.keyCode == 'U'.charCodeAt(0)) return false; // منع Ctrl+U
+            if(e.ctrlKey && e.keyCode == 'U'.charCodeAt(0)) return false; 
         }
 
         // --- 1. Rain Background ---
@@ -287,10 +300,19 @@
         window.addEventListener('resize', () => { resizeRain(); resizeInnerCanvas(); });
         setTimeout(() => { resizeInnerCanvas(); animateInnerLines(); }, 100);
 
-        // --- 3. Visitor & Global Interaction ---
-        let count = localStorage.getItem('vortx_real_count') || 0;
-        count = parseInt(count) + 1; localStorage.setItem('vortx_real_count', count);
-        document.getElementById('vCount').innerText = count.toLocaleString();
+        // --- 3. REAL Global Visitor Counter ---
+        // التعديل: استخدام API عالمي لحساب الزوار الفعليين بدلاً من الحفظ المحلي
+        const counterNamespace = "vortx_official_page"; 
+        const counterKey = "total_visits";
+
+        fetch(`https://api.counterapi.dev/v1/${counterNamespace}/${counterKey}/up`)
+          .then(response => response.json())
+          .then(data => {
+              document.getElementById('vCount').innerText = data.count.toLocaleString();
+          })
+          .catch(error => {
+              console.error("Error fetching counter");
+          });
 
         const flash = document.getElementById('flash');
         document.addEventListener('click', (e) => {
@@ -378,3 +400,4 @@
     </script>
 </body>
 </html>
+
