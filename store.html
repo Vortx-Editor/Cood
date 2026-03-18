@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VORTX | Store</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;900&family=Tajawal:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --neon-purple: #9d00ff;
+            --neon-blue: #00f3ff;
+            --bg-dark: #05000a;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            background-color: var(--bg-dark);
+            min-height: 100vh;
+            color: #fff;
+            font-family: 'Tajawal', sans-serif;
+            padding: 40px 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        /* حاوية المتجر */
+        .store-container {
+            width: 100%;
+            max-width: 800px; /* أعرض شوي من الرئيسية عشان ياخذ منتجات أكثر */
+        }
+
+        /* الهيدر وزر الرجوع */
+        .store-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 40px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid rgba(157, 0, 255, 0.2);
+        }
+
+        .store-title {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 28px;
+            font-weight: 900;
+            color: #fff;
+            text-shadow: 0 0 15px var(--neon-purple);
+            text-transform: uppercase;
+        }
+
+        .back-btn {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: #fff;
+            padding: 8px 15px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 700;
+            transition: all 0.3s;
+            backdrop-filter: blur(5px);
+        }
+
+        .back-btn:hover {
+            background: rgba(157, 0, 255, 0.2);
+            border-color: var(--neon-purple);
+            box-shadow: 0 0 10px rgba(157, 0, 255, 0.5);
+        }
+
+        /* شبكة المنتجات */
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 20px;
+        }
+
+        /* كرت المنتج الزجاجي */
+        .product-card {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.03) 0%, rgba(15, 5, 25, 0.4) 100%);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(157, 0, 255, 0.2);
+            border-radius: 20px;
+            padding: 15px;
+            text-align: center;
+            transition: transform 0.3s, box-shadow 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(157, 0, 255, 0.2);
+            border-color: rgba(157, 0, 255, 0.5);
+        }
+
+        .product-img-container {
+            width: 100%;
+            height: 150px;
+            border-radius: 12px;
+            background: rgba(0, 0, 0, 0.5);
+            margin-bottom: 15px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            overflow: hidden;
+        }
+
+        /* عشان لو ما حطيت صورة الحين، يطلع شكل فخم مؤقت */
+        .placeholder-icon {
+            font-size: 40px;
+            color: rgba(255, 255, 255, 0.2);
+        }
+
+        .product-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: none; /* مخفية لين ترفع صورك الخاصة */
+        }
+
+        .product-title {
+            font-size: 18px;
+            font-weight: 700;
+            color: #fff;
+            margin-bottom: 8px;
+        }
+
+        .product-price {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 22px;
+            font-weight: 900;
+            color: var(--neon-blue);
+            text-shadow: 0 0 10px rgba(0, 243, 255, 0.5);
+            margin-bottom: 15px;
+        }
+
+        .buy-now-btn {
+            display: block;
+            width: 100%;
+            padding: 12px;
+            background: linear-gradient(90deg, #4a00e0, #8e2de2);
+            color: #fff;
+            border: none;
+            border-radius: 10px;
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+            text-decoration: none;
+            transition: all 0.3s;
+            box-shadow: 0 0 15px rgba(157, 0, 255, 0.3);
+        }
+
+        .buy-now-btn:hover {
+            box-shadow: 0 0 20px #b400ff;
+            transform: scale(1.02);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="store-container">
+        <div class="store-header">
+            <div class="store-title">VORTX Store</div>
+            <a href="index.html" class="back-btn">⬅ عودة للرئيسية</a>
+        </div>
+
+        <div class="products-grid">
+            
+            <div class="product-card">
+                <div class="product-img-container">
+                    <div class="placeholder-icon">📦</div>
+                    <img src="your-image1.png" alt="Product" class="product-img">
+                </div>
+                <div class="product-title">VORTX CC Pack</div>
+                <div class="product-price">5.00$</div>
+                <a href="#" class="buy-now-btn">شراء الآن</a>
+            </div>
+
+            <div class="product-card">
+                <div class="product-img-container">
+                    <div class="placeholder-icon">🎬</div>
+                    <img src="your-image2.png" alt="Product" class="product-img">
+                </div>
+                <div class="product-title">Alight Motion Project</div>
+                <div class="product-price">3.00$</div>
+                <a href="#" class="buy-now-btn">شراء الآن</a>
+            </div>
+
+        </div>
+    </div>
+
+</body>
+</html>
+
