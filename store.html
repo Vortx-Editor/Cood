@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>VORTX | Pro Store</title>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;900&family=Tajawal:wght@400;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&display=swap" rel="stylesheet">
     <style>
         :root {
             --neon-purple: #b400ff;
@@ -25,7 +25,8 @@
             background-attachment: fixed;
             min-height: 100vh;
             color: #fff;
-            font-family: 'Tajawal', sans-serif;
+            /* توحيد الخط للإنجليزي ليكون متناسق وفخم */
+            font-family: 'Montserrat', sans-serif;
             padding: 20px 20px 80px;
             display: flex;
             flex-direction: column;
@@ -42,7 +43,7 @@
         }
 
         .store-title {
-            font-family: 'Montserrat', sans-serif; font-size: 28px; font-weight: 900;
+            font-size: 28px; font-weight: 900;
             color: #d866ff; text-shadow: 0 0 10px var(--neon-purple), 0 0 20px var(--neon-purple); 
             text-transform: uppercase; letter-spacing: 2px;
         }
@@ -57,7 +58,7 @@
         /* أزرار البرامج العريضة */
         .programs-nav { display: flex; justify-content: center; gap: 20px; width: 100%; margin-bottom: 20px; }
         .prog-btn {
-            flex: 1; padding: 18px 10px; font-size: 18px; font-weight: 900; font-family: 'Montserrat', sans-serif;
+            flex: 1; padding: 18px 10px; font-size: 18px; font-weight: 900;
             background: rgba(0, 0, 0, 0.6); border: 2px solid rgba(180, 0, 255, 0.2);
             border-radius: 15px; color: #888; cursor: pointer; transition: all 0.4s;
             text-transform: uppercase; letter-spacing: 1px; backdrop-filter: blur(10px);
@@ -67,49 +68,25 @@
             box-shadow: 0 0 25px rgba(180, 0, 255, 0.4); text-shadow: 0 0 8px #fff; transform: translateY(-3px);
         }
 
-        /* --- شريط الأقسام الزجاجي العريض (الشيكات وغيرها) - التعديل الجديد --- */
+        /* شريط الأقسام الزجاجي العريض */
         .category-nav {
-            display: flex;
-            justify-content: center; /* توسيط الأزرار */
-            gap: 10px; /* فجوة أصغر */
-            width: 90%; /* عرض محدود */
-            max-width: 600px; /* أقصى عرض */
-            margin: 0 auto 30px; /* توسيط الشريط وتقليل الهامش السفلي */
-            position: sticky;
-            top: 15px;
-            z-index: 1000;
-            background: rgba(5, 0, 10, 0.7);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            padding: 10px 15px; /* تقليل البادينغ */
-            border-radius: 20px;
-            border: 1px solid rgba(180, 0, 255, 0.4);
+            display: flex; justify-content: center; gap: 10px; width: 90%; max-width: 600px;
+            margin: 0 auto 30px; position: sticky; top: 15px; z-index: 1000;
+            background: rgba(5, 0, 10, 0.7); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+            padding: 10px 15px; border-radius: 20px; border: 1px solid rgba(180, 0, 255, 0.4);
             box-shadow: 0 10px 30px rgba(0,0,0,0.8);
         }
 
         .cat-btn {
-            /* flex: 1; - إزالة الامتداد */
-            display: inline-block; /* جعلها أقل عُرضاً */
-            text-align: center;
-            color: #fff;
-            text-decoration: none;
-            font-weight: 700; /* تقليل الوزن قليلاً */
-            font-family: 'Montserrat', sans-serif;
-            padding: 10px 20px; /* تعديل البادينغ */
-            border-radius: 12px;
-            font-size: 14px; /* تصغير الخط قليلاً */
-            letter-spacing: 1px;
-            background: rgba(255,255,255,0.03);
-            border: 1px solid transparent;
-            cursor: pointer;
-            transition: all 0.3s;
+            display: inline-block; text-align: center; color: #fff; text-decoration: none;
+            font-weight: 700; padding: 10px 20px; border-radius: 12px; font-size: 14px;
+            letter-spacing: 1px; background: rgba(255,255,255,0.03); border: 1px solid transparent;
+            cursor: pointer; transition: all 0.3s; text-transform: uppercase;
         }
 
         .cat-btn:hover, .cat-btn:active {
-            background: rgba(180, 0, 255, 0.2);
-            border-color: var(--neon-purple);
-            box-shadow: 0 0 10px rgba(180, 0, 255, 0.4); /* تأثير لمعان أضيق */
-            transform: translateY(-2px);
+            background: rgba(180, 0, 255, 0.2); border-color: var(--neon-purple);
+            box-shadow: 0 0 10px rgba(180, 0, 255, 0.4); transform: translateY(-2px);
         }
 
         /* إخفاء وإظهار الأقسام حسب البرنامج */
@@ -117,14 +94,12 @@
         .app-section.active-app { display: block; }
         @keyframes fadeInSec { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
 
-        /* تعديل العناوين للبنفسجي */
+        /* العناوين */
         .section-title {
-            font-family: 'Montserrat', sans-serif; font-size: 24px; font-weight: 900;
-            color: #d866ff; text-shadow: 0 0 15px var(--neon-purple);
+            font-size: 24px; font-weight: 900; color: #d866ff; text-shadow: 0 0 15px var(--neon-purple);
             margin: 60px 0 25px; padding-bottom: 10px; position: relative;
             text-transform: uppercase; letter-spacing: 2px;
         }
-        /* خط متوهج تحت العنوان للتجميل */
         .section-title::after {
             content: ''; position: absolute; bottom: 0; left: 0; width: 80px; height: 3px;
             background: var(--neon-purple); box-shadow: 0 0 10px var(--neon-purple); border-radius: 5px;
@@ -133,7 +108,7 @@
         /* شبكة المنتجات */
         .products-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 25px; }
 
-        /* كرت المنتج - زيادة الفخامة */
+        /* كرت المنتج */
         .product-card {
             background: linear-gradient(135deg, rgba(20, 10, 30, 0.8) 0%, rgba(5, 0, 10, 0.9) 100%);
             backdrop-filter: blur(10px); border: 1px solid rgba(180, 0, 255, 0.2);
@@ -149,16 +124,17 @@
             width: 100%; height: 160px; border-radius: 12px; background: rgba(0, 0, 0, 0.6);
             margin-bottom: 15px; display: flex; justify-content: center; align-items: center;
             border: 1px solid rgba(255, 255, 255, 0.05); overflow: hidden; box-shadow: inset 0 0 20px rgba(0,0,0,0.8);
+            position: relative;
         }
 
         .placeholder-icon { font-size: 50px; color: rgba(180, 0, 255, 0.3); text-shadow: 0 0 15px rgba(180,0,255,0.2); }
+        .play-indicator { position: absolute; font-size: 30px; color: rgba(255,255,255,0.5); text-shadow: 0 0 10px #000; pointer-events: none; }
 
-        .product-title { font-size: 19px; font-weight: 900; color: #fff; margin-bottom: 8px; letter-spacing: 1px; }
+        .product-title { font-size: 19px; font-weight: 900; color: #fff; margin-bottom: 8px; letter-spacing: 1px; text-transform: uppercase;}
         .product-desc { font-size: 13px; color: #aaa; margin-bottom: 15px; line-height: 1.5; height: 38px; overflow: hidden; }
 
         .product-price {
-            font-family: 'Montserrat', sans-serif; font-size: 26px; font-weight: 900;
-            color: #d866ff; text-shadow: 0 0 10px rgba(180, 0, 255, 0.5); margin-bottom: 20px;
+            font-size: 26px; font-weight: 900; color: #d866ff; text-shadow: 0 0 10px rgba(180, 0, 255, 0.5); margin-bottom: 20px;
         }
 
         .buy-now-btn {
@@ -191,22 +167,17 @@
         .arrow { transition: transform 0.3s; }
         .faq-item.active .arrow { transform: rotate(180deg); }
 
-        /* حزمة VIP والتقييمات (مخفية حالياً للاستخدام المستقبلي) */
+        /* حزمة VIP (مخفية) */
         .vip-card { grid-column: 1 / -1; background: linear-gradient(135deg, rgba(30, 20, 0, 0.9) 0%, rgba(15, 0, 20, 0.9) 100%); border: 2px solid var(--neon-gold); box-shadow: 0 0 30px rgba(255, 184, 0, 0.15); display: flex; flex-direction: column; align-items: center; padding: 30px; }
         .vip-card:hover { transform: translateY(-5px); box-shadow: 0 0 40px rgba(255, 184, 0, 0.3); }
         .vip-title { color: var(--neon-gold); text-shadow: 0 0 15px var(--neon-gold); font-size: 26px; font-weight: 900; margin-bottom: 10px; }
         .vip-desc { color: #ddd; font-size: 15px; margin-bottom: 20px; max-width: 600px; text-align: center; line-height: 1.6; }
         .vip-price-wrap { display: flex; align-items: center; gap: 15px; margin-bottom: 20px; }
-        .old-price { text-decoration: line-through; color: #888; font-size: 20px; font-family: 'Montserrat', sans-serif; }
-        .new-price { color: var(--neon-gold); font-size: 32px; font-weight: 900; font-family: 'Montserrat', sans-serif; text-shadow: 0 0 15px var(--neon-gold); }
+        .old-price { text-decoration: line-through; color: #888; font-size: 20px; }
+        .new-price { color: var(--neon-gold); font-size: 32px; font-weight: 900; text-shadow: 0 0 15px var(--neon-gold); }
         .vip-btn { background: linear-gradient(90deg, #cc9200, #ffb800); box-shadow: 0 0 20px rgba(255, 184, 0, 0.4); max-width: 300px; }
         .vip-btn:hover { background: linear-gradient(90deg, #e6a400, #ffcc33); box-shadow: 0 0 30px rgba(255, 184, 0, 0.6); }
-        .reviews-section { margin-top: 60px; width: 100%; text-align: center; }
-        .reviews-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 15px; margin-top: 20px; }
-        .review-card { background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.05); padding: 20px; border-radius: 15px; text-align: right; }
-        .stars { color: var(--neon-gold); font-size: 18px; margin-bottom: 10px; }
-        .review-text { color: #ccc; font-size: 14px; font-style: italic; margin-bottom: 10px; }
-        .reviewer-name { color: #d866ff; font-weight: 700; font-size: 13px; }
+
     </style>
 </head>
 <body>
@@ -215,7 +186,7 @@
         
         <div class="store-header">
             <div class="store-title">VORTX Store</div>
-            <a href="index.html" class="back-btn">⬅ عودة للرئيسية</a>
+            <a href="index.html" class="back-btn">⬅ BACK</a>
         </div>
 
         <div class="programs-nav">
@@ -234,33 +205,33 @@
             <h2 class="section-title cat-shakes">✨ AE Shakes</h2>
             <div class="products-grid">
                 <div class="product-card">
-                    <div class="product-media"><div class="play-indicator">▶</div></div>
-                    <div class="product-title">اسم المنتج هنا</div>
-                    <div class="product-desc">وصف المنتج هنا. وصف المنتج هنا. وصف المنتج هنا. وصف المنتج هنا. </div>
-                    <div class="product-price">0.00$</div>
-                    <a href="#" class="buy-now-btn">قريباً</a>
+                    <div class="product-img-container"><div class="play-indicator">▶</div></div>
+                    <div class="product-title">Product Name Here</div>
+                    <div class="product-desc">Product description goes here. Explain what makes this pack special.</div>
+                    <div class="product-price">$0.00</div>
+                    <a href="#" class="buy-now-btn">Coming Soon</a>
                 </div>
             </div>
 
             <h2 class="section-title cat-cc">🎨 AE Color Correction</h2>
             <div class="products-grid">
                 <div class="product-card">
-                    <div class="product-media"><div class="play-indicator">▶</div></div>
-                    <div class="product-title">اسم المنتج هنا</div>
-                    <div class="product-desc">وصف المنتج هنا. وصف المنتج هنا. وصف المنتج هنا. وصف المنتج هنا. </div>
-                    <div class="product-price">0.00$</div>
-                    <a href="#" class="buy-now-btn">قريباً</a>
+                    <div class="product-img-container"><div class="play-indicator">▶</div></div>
+                    <div class="product-title">Product Name Here</div>
+                    <div class="product-desc">Product description goes here. Explain what makes this pack special.</div>
+                    <div class="product-price">$0.00</div>
+                    <a href="#" class="buy-now-btn">Coming Soon</a>
                 </div>
             </div>
 
             <h2 class="section-title cat-effects">⚡ AE Effects</h2>
             <div class="products-grid">
                 <div class="product-card">
-                    <div class="product-media"><div class="play-indicator">▶</div></div>
-                    <div class="product-title">اسم المنتج هنا</div>
-                    <div class="product-desc">وصف المنتج هنا. وصف المنتج هنا. وصف المنتج هنا. وصف المنتج هنا. </div>
-                    <div class="product-price">0.00$</div>
-                    <a href="#" class="buy-now-btn">قريباً</a>
+                    <div class="product-img-container"><div class="play-indicator">▶</div></div>
+                    <div class="product-title">Product Name Here</div>
+                    <div class="product-desc">Product description goes here. Explain what makes this pack special.</div>
+                    <div class="product-price">$0.00</div>
+                    <a href="#" class="buy-now-btn">Coming Soon</a>
                 </div>
             </div>
         </div>
@@ -269,38 +240,38 @@
             <h2 class="section-title cat-shakes">📱 AM Assets</h2>
             <div class="products-grid">
                 <div class="product-card">
-                    <div class="product-media"><div class="play-indicator">▶</div></div>
-                    <div class="product-title">اسم المنتج هنا</div>
-                    <div class="product-desc">وصف المنتج هنا. وصف المنتج هنا. وصف المنتج هنا. وصف المنتج هنا. </div>
-                    <div class="product-price">0.00$</div>
-                    <a href="#" class="buy-now-btn">قريباً</a>
+                    <div class="product-img-container"><div class="play-indicator">▶</div></div>
+                    <div class="product-title">Product Name Here</div>
+                    <div class="product-desc">Product description goes here. Explain what makes this pack special.</div>
+                    <div class="product-price">$0.00</div>
+                    <a href="#" class="buy-now-btn">Coming Soon</a>
                 </div>
             </div>
         </div>
 
         <div class="faq-section">
-            <h2 class="section-title" style="text-align: center; margin-top: 0;">❓ أسئلة شائعة</h2>
+            <h2 class="section-title" style="text-align: center; margin-top: 0;">❓ FAQ</h2>
             
             <div class="faq-item" onclick="this.classList.toggle('active')">
-                <div class="faq-question">متى يوصلني الملف بعد الدفع؟ <span class="arrow">▼</span></div>
-                <div class="faq-answer">التسليم آلي وفوري. بمجرد إتمام الدفع، راح تظهر لك صفحة التحميل، ونسخة من الملف بتنرسل على إيميلك اللي سجلت فيه.</div>
+                <div class="faq-question">When will I receive the files? <span class="arrow">▼</span></div>
+                <div class="faq-answer">Delivery is instant and automated. Once payment is complete, you will be redirected to the download page and receive an email copy.</div>
             </div>
             
             <div class="faq-item" onclick="this.classList.toggle('active')">
-                <div class="faq-question">هل أقدر أسترجع فلوسي؟ <span class="arrow">▼</span></div>
-                <div class="faq-answer">لأن المنتجات رقمية وملفات مفتوحة، سياسة المتجر تمنع الاسترجاع نهائياً بعد التحميل. يرجى قراءة وصف المنتج بدقة قبل الشراء.</div>
+                <div class="faq-question">Can I get a refund? <span class="arrow">▼</span></div>
+                <div class="faq-answer">Since these are digital files, they are strictly non-refundable once downloaded. Please read the product description carefully before purchasing.</div>
             </div>
 
             <div class="faq-item" onclick="this.classList.toggle('active')">
-                <div class="faq-question">الملفات تدعم أي إصدار؟ <span class="arrow">▼</span></div>
-                <div class="faq-answer">مشاريع الأفتر افكتس تدعم إصدار 2020 وما فوق. ملفات اللايت موشن تدعم آخر تحديث للتطبيق.</div>
+                <div class="faq-question">Which versions are supported? <span class="arrow">▼</span></div>
+                <div class="faq-answer">After Effects projects support CC 2020 and newer. Alight Motion files support the latest app version.</div>
             </div>
         </div>
 
         <div class="trust-badges">
-            <div class="trust-item">⚡ تسليم آلي فوري</div>
-            <div class="trust-item">🔒 دفع آمن ومشفر بواسطة Gumroad</div>
-            <div class="trust-item">❌ المنتجات الرقمية غير قابلة للاسترجاع</div>
+            <div class="trust-item">⚡ Instant Delivery</div>
+            <div class="trust-item">🔒 Secure Payment via Gumroad</div>
+            <div class="trust-item">❌ Non-Refundable Digital Goods</div>
         </div>
 
     </div>
