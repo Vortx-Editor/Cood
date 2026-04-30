@@ -91,7 +91,7 @@
         }
 
         /* --- 4. Premium Staggered Entrance Animation --- */
-        .logo-container, .title-container, .crystal-panel, .link-btn, .visitor-badge-container { 
+        .logo-container, .title-container, .crystal-panel, .link-btn, .visitor-badge-container, .copy-box { 
             position: relative; z-index: 10; opacity: 0; 
             animation: fadeInUpBlur 0.5s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
         }
@@ -106,7 +106,8 @@
         .link-btn:nth-child(1) { animation-delay: 0.4s; } 
         .link-btn:nth-child(2) { animation-delay: 0.5s; } 
         .link-btn:nth-child(3) { animation-delay: 0.6s; } 
-        .link-btn:nth-child(4) { animation-delay: 0.7s; } 
+        .copy-box { animation-delay: 0.65s; } /* توقيت ظهور صندوق النسخ */
+        .link-btn:nth-child(5) { animation-delay: 0.7s; } 
         .visitor-badge-container { animation-delay: 0.8s; }
 
         /* --- 5. Logo & Title --- */
@@ -153,6 +154,31 @@
         .glow-instagram { filter: drop-shadow(0 0 8px #ff007f); }
 
         .btn-blue-reaction { background: rgba(0, 243, 255, 0.2) !important; box-shadow: 0 0 20px #00f3ff, 0 0 40px #00f3ff !important; border-color: #00f3ff !important; transform: scale(1.05) !important; }
+
+        /* --- صندوق النسخ الجديد --- */
+        .copy-box {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px dashed rgba(0, 243, 255, 0.3);
+            border-radius: 10px;
+            padding: 10px 15px;
+            margin-top: -8px; /* عشان يرتفع شوي ويقرب من زر التلجرام */
+            margin-bottom: 2px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 14px;
+            color: rgba(255, 255, 255, 0.5);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .copy-box:hover {
+            background: rgba(0, 243, 255, 0.1);
+            color: #00f3ff;
+            border-color: #00f3ff;
+            transform: scale(1.02);
+        }
+        .copy-icon { font-size: 18px; filter: grayscale(100%); transition: 0.3s; }
+        .copy-box:hover .copy-icon { filter: grayscale(0%); }
 
         /* --- 8. Visitor Badge --- */
         .visitor-badge-container { margin-top: 35px; display: flex; justify-content: center; }
@@ -218,7 +244,14 @@
         <div class="links-wrapper">
             <a href="store.html" class="link-btn store-btn">🛒 Online Store</a>
             <a href="https://www.tiktok.com/@ortr.1?_r=1&_t=ZS-94WfLhF9TMt" target="_blank" class="link-btn"><img src="tik.png" alt="TikTok" class="btn-icon glow-tiktok"> TikTok</a>
+            
             <a href="https://t.me/v_ortx" target="_blank" class="link-btn" id="telegram-btn"><img src="tly.png" alt="Telegram" class="btn-icon btn-icon-telegram glow-telegram"> Telegram</a>
+            
+            <div class="copy-box" onclick="copyTelegramLink()" id="copyBox">
+                <span>https://t.me/v_ortx</span>
+                <span class="copy-icon">📋</span>
+            </div>
+
             <a href="https://www.instagram.com/toix.8i?igsh=Z3B1eWdwNGJocW9q" target="_blank" class="link-btn"><img src="ins.png" alt="Instagram" class="btn-icon btn-icon-instagram glow-instagram"> Instagram</a>
         </div>
 
@@ -361,6 +394,19 @@
             if (e.target.closest('#cyber-robot') || e.target.closest('.link-btn')) return;
             flash.style.opacity = '1'; setTimeout(() => { flash.style.opacity = '0'; }, 100);
         });
+
+        // سكريبت نسخ الرابط الجديد
+        function copyTelegramLink() {
+            const linkToCopy = "https://t.me/v_ortx";
+            navigator.clipboard.writeText(linkToCopy).then(() => {
+                const box = document.getElementById('copyBox');
+                const originalHTML = box.innerHTML;
+                box.innerHTML = '<span style="color: #00f3ff; font-weight: bold; width: 100%; text-align: center;">تم النسخ يا وحش ✔️</span>';
+                setTimeout(() => { box.innerHTML = originalHTML; }, 2000);
+            }).catch(err => {
+                console.error('Failed to copy!', err);
+            });
+        }
     </script>
 </body>
 </html>
