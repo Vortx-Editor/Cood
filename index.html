@@ -34,7 +34,6 @@
             font-family: 'Tajawal', sans-serif;
             user-select: none;
             -webkit-user-select: none;
-            /* تسريع الهاردوير لمعالجة أسرع */
             transform: translateZ(0);
         }
 
@@ -106,7 +105,7 @@
         .link-btn:nth-child(1) { animation-delay: 0.4s; } 
         .link-btn:nth-child(2) { animation-delay: 0.5s; } 
         .link-btn:nth-child(3) { animation-delay: 0.6s; } 
-        .copy-box { animation-delay: 0.65s; } /* توقيت ظهور صندوق النسخ */
+        .copy-box { animation-delay: 0.65s; } 
         .link-btn:nth-child(5) { animation-delay: 0.7s; } 
         .visitor-badge-container { animation-delay: 0.8s; }
 
@@ -155,19 +154,20 @@
 
         .btn-blue-reaction { background: rgba(0, 243, 255, 0.2) !important; box-shadow: 0 0 20px #00f3ff, 0 0 40px #00f3ff !important; border-color: #00f3ff !important; transform: scale(1.05) !important; }
 
-        /* --- صندوق النسخ الجديد --- */
+        /* --- صندوق النسخ الجديد المطور --- */
         .copy-box {
             background: rgba(255, 255, 255, 0.03);
             border: 1px dashed rgba(0, 243, 255, 0.3);
             border-radius: 10px;
-            padding: 10px 15px;
-            margin-top: -8px; /* عشان يرتفع شوي ويقرب من زر التلجرام */
+            padding: 15px 20px; /* السماكة زادت هنا */
+            margin-top: -8px; 
             margin-bottom: 2px;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            font-size: 14px;
-            color: rgba(255, 255, 255, 0.5);
+            font-size: 16px; /* الخط صار أكبر */
+            font-weight: 700; /* الخط صار عريض */
+            color: rgba(255, 255, 255, 0.7); /* اللون أوضح */
             cursor: pointer;
             transition: all 0.3s ease;
         }
@@ -266,7 +266,6 @@
         window.addEventListener('load', () => {
             setTimeout(() => {
                 
-                // تعديل المطر: رجعناه للوضع الشفاف (clearRect)
                 const rainCanvas = document.getElementById('rainCanvas');
                 rainCanvas.style.opacity = "1";
                 const ctxRain = rainCanvas.getContext('2d', { alpha: true });
@@ -277,7 +276,7 @@
                     rainParticles.push({ x: Math.random() * rainCanvas.width, y: Math.random() * rainCanvas.height, size: Math.random() * 2, speedY: Math.random() * 0.4 + 0.1, opacity: Math.random() * 0.5 + 0.1 });
                 }
                 function animateRain() {
-                    ctxRain.clearRect(0, 0, rainCanvas.width, rainCanvas.height); // هنا التعديل اللي رجع الخلفية
+                    ctxRain.clearRect(0, 0, rainCanvas.width, rainCanvas.height); 
                     rainParticles.forEach(p => {
                         ctxRain.fillStyle = `rgba(157, 0, 255, ${p.opacity})`; ctxRain.beginPath(); ctxRain.arc(p.x, p.y, p.size, 0, Math.PI * 2); ctxRain.fill();
                         p.y += p.speedY; if (p.y > rainCanvas.height) { p.y = 0; p.x = Math.random() * rainCanvas.width; }
@@ -395,13 +394,13 @@
             flash.style.opacity = '1'; setTimeout(() => { flash.style.opacity = '0'; }, 100);
         });
 
-        // سكريبت نسخ الرابط الجديد
+        // رسالة النسخ بالإنجليزي
         function copyTelegramLink() {
             const linkToCopy = "https://t.me/v_ortx";
             navigator.clipboard.writeText(linkToCopy).then(() => {
                 const box = document.getElementById('copyBox');
                 const originalHTML = box.innerHTML;
-                box.innerHTML = '<span style="color: #00f3ff; font-weight: bold; width: 100%; text-align: center;">تم النسخ يا وحش ✔️</span>';
+                box.innerHTML = '<span style="color: #00f3ff; font-weight: bold; width: 100%; text-align: center;">Copied! ✔️</span>';
                 setTimeout(() => { box.innerHTML = originalHTML; }, 2000);
             }).catch(err => {
                 console.error('Failed to copy!', err);
@@ -410,3 +409,4 @@
     </script>
 </body>
 </html>
+
