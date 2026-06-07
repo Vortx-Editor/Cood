@@ -3,381 +3,272 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>VORTX | The Singularity</title>
+    <title>VORTX // CORE_SYSTEM</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700;900&family=Tajawal:wght@500;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;900&family=Share+Tech+Mono&family=Tajawal:wght@500;900&display=swap" rel="stylesheet">
     <style>
         :root {
-            --blackhole: #020005;
-            --singularity-neon: #00f3ff;
-            --vortex-purple: #9d00ff;
-            --plasma-pink: #ff007f;
-            --core-glass: rgba(3, 1, 7, 0.45);
+            --neon-glow: #00f3ff;
+            --vortex-purp: #7a00ff;
+            --cyber-dark: #020105;
+            --panel-bg: rgba(6, 3, 14, 0.75);
+            --matrix-green: #00ff66;
         }
 
-        * { 
-            margin: 0; 
-            padding: 0; 
-            box-sizing: border-box; 
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
 
         body {
-            background-color: var(--blackhole);
+            background-color: var(--cyber-dark);
             min-height: 100vh;
-            display: flex; 
-            flex-direction: column;
-            justify-content: center; 
-            align-items: center;
-            padding: 20px; 
             color: #fff;
-            overflow: hidden; 
             font-family: 'Orbitron', 'Tajawal', sans-serif;
+            overflow-x: hidden;
             position: relative;
+            display: flex;
+            flex-direction: column;
             user-select: none;
             -webkit-user-select: none;
-            perspective: 1200px;
         }
 
-        /* --- خلفية الدوامة الكونية العميقة (Dynamic Particle Vortex) --- */
-        #vortexCanvas {
-            position: fixed; top: 0; left: 0;
-            width: 100vw; height: 100vh;
+        /* --- خطوط الشبكة السيبرانية المتحركة بالخلفية --- */
+        .cyber-grid {
+            position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
+            background-image: linear-gradient(rgba(122, 0, 255, 0.05) 1px, transparent 1px),
+                              linear-gradient(90deg, rgba(122, 0, 255, 0.05) 1px, transparent 1px);
+            background-size: 40px 40px; background-position: center;
             z-index: 1; pointer-events: none;
         }
-
-        /* --- تأثير الصدمة والانتقال السينمائي عند الدخول (The Sucking Distortion) --- */
-        .vortex-tunnel-intro {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: radial-gradient(circle, transparent 20%, var(--blackhole) 80%);
-            z-index: 9999; pointer-events: none;
-            animation: warpDrive 1.8s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+        .scanline {
+            position: fixed; top: 0; left: 0; width: 100%; height: 4px;
+            background: rgba(0, 243, 255, 0.1); opacity: 0.6;
+            z-index: 2; pointer-events: none;
+            animation: scan 6s linear infinite;
         }
+        @keyframes scan { 0% { top: -5%; } 100% { top: 105%; } }
 
-        @keyframes warpDrive {
-            0% { backdrop-filter: blur(40px) hue-rotate(0deg); opacity: 1; transform: scale(2); }
-            50% { backdrop-filter: blur(20px) hue-rotate(180deg); opacity: 0.8; }
-            100% { backdrop-filter: blur(0px) hue-rotate(360deg); opacity: 0; transform: scale(1); }
+        /* --- شريط النظام العلوي (هيبة واجهات الاختراق والمونتاج) --- */
+        .top-hud-bar {
+            width: 100%; padding: 15px 30px;
+            background: rgba(4, 2, 8, 0.9);
+            border-bottom: 1px solid rgba(0, 243, 255, 0.2);
+            display: flex; justify-content: space-between; align-items: center;
+            position: relative; z-index: 100;
+            font-family: 'Share Tech Mono', monospace;
+            font-size: 13px; letter-spacing: 2px; color: rgba(255,255,255,0.6);
         }
+        .system-status span { color: var(--matrix-green); font-weight: bold; animation: blink 1.5s infinite; }
+        @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0.3; } }
 
-        /* --- الحاوية المركزية: صدمة بصرية وانتقال ثلاثي الأبعاد من العدم --- */
-        .vortex-core {
-            background: var(--core-glass);
-            backdrop-filter: blur(25px);
-            -webkit-backdrop-filter: blur(25px);
-            border: 2px solid rgba(157, 0, 255, 0.15);
-            border-radius: 40px;
-            padding: 60px 40px;
+        /* --- الهيكل الجذري الجديد: تقسيم الشاشة التكتيكي (Grid OS Layout) --- */
+        .dashboard-matrix {
+            display: grid;
+            grid-template-columns: 1fr 1.5fr;
+            gap: 25px;
             width: 100%;
-            max-width: 440px;
-            text-align: center;
+            max-width: 1300px;
+            margin: auto;
+            padding: 30px;
             position: relative;
             z-index: 10;
-            box-shadow: 0 0 80px rgba(157, 0, 255, 0.15),
-                        inset 0 0 30px rgba(0, 243, 255, 0.05),
-                        inset 0 1px 2px rgba(255, 255, 255, 0.2);
-            
-            /* تأثير الدوامة في الدخول */
-            animation: galacticSuckIn 1.6s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
-            transform-style: preserve-3d;
-            will-change: transform, opacity;
         }
 
-        @keyframes galacticSuckIn {
-            0% { opacity: 0; transform: translateZ(-800px) rotateY(180deg) rotateZ(90deg) scale(0.1); filter: blur(20px); }
-            60% { opacity: 0.9; transform: translateZ(50px) rotateY(-10deg) rotateZ(-5deg) scale(1.05); filter: blur(2px); }
-            100% { opacity: 1; transform: translateZ(0) rotateY(0) rotateZ(0) scale(1); filter: blur(0); }
+        /* اللوحات التكتيكية الزجاجية مشطوفة الأطراف */
+        .cyber-panel {
+            background: var(--panel-bg);
+            border: 1px solid rgba(122, 0, 255, 0.25);
+            border-radius: 16px;
+            padding: 40px;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.7), inset 0 0 20px rgba(122,0,255,0.1);
+            backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+            transition: border-color 0.4s;
         }
+        .cyber-panel:hover { border-color: var(--neon-glow); }
 
-        /* --- إطار اللوقو الأسطوري (نيون بلازما متوهج يدور في فلكك) --- */
-        .quantum-avatar-frame {
-            width: 140px; height: 140px;
-            margin: 0 auto 30px;
-            border-radius: 50%;
-            padding: 5px;
-            background: linear-gradient(90deg, var(--singularity-neon), var(--vortex-purple), var(--plasma-pink), var(--singularity-neon));
-            background-size: 300% 300%;
-            animation: plasmaOrbit 4s linear infinite;
-            box-shadow: 0 0 40px rgba(0, 243, 255, 0.4), 
-                        inset 0 0 20px rgba(255, 255, 255, 0.2);
+        /* زوايا الديكور العسكرية التقنية المذهلة */
+        .cyber-panel::before, .cyber-panel::after {
+            content: ''; position: absolute; width: 12px; height: 12px; border-color: var(--neon-glow); border-style: solid; pointer-events: none;
+        }
+        .cyber-panel::before { top: 0; left: 0; border-width: 2px 0 0 2px; }
+        .cyber-panel::after { bottom: 0; right: 0; border-width: 0 2px 2px 0; }
+
+        /* --- اللوحة اليسرى: وحدة الهوية والتحكم --- */
+        .identity-module { display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; }
+        
+        /* إطار اللوقو اللي عجبك مع تدعيم التوهج الفخم المطور */
+        .quantum-frame {
+            width: 160px; height: 160px; border-radius: 50%; padding: 4px; margin-bottom: 25px;
+            background: linear-gradient(135deg, var(--neon-glow) 0%, var(--vortex-purp) 50%, #ff0055 100%);
+            box-shadow: 0 0 40px rgba(122, 0, 255, 0.5);
             position: relative;
         }
-        .quantum-avatar-frame::before {
-            content: ''; position: absolute; top: -10px; left: -10px; right: -10px; bottom: -10px;
-            background: inherit; border-radius: 50%; z-index: -1; filter: blur(20px); opacity: 0.6;
-        }
-        .prime-img { width: 100%; height: 100%; border-radius: 50%; object-fit: cover; border: 5px solid var(--blackhole); }
+        .avatar-core { width: 100%; height: 100%; border-radius: 50%; object-fit: cover; border: 5px solid var(--cyber-dark); }
 
-        @keyframes plasmaOrbit {
-            0% { background-position: 0% 50%; transform: rotate(0deg); }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; transform: rotate(360deg); }
-        }
-
-        /* --- شعار الهوية المطور الحاد --- */
-        .dimension-title { margin-bottom: 12px; transform: translateZ(30px); }
-        .vector-brand { width: 85%; max-width: 240px; display: block; margin: 0 auto; filter: drop-shadow(0 0 25px rgba(157, 0, 255, 0.5)); animation: brandPulse 3s ease-in-out infinite alternate; }
-
-        @keyframes brandPulse {
-            0% { transform: scale(1); filter: drop-shadow(0 0 15px rgba(157, 0, 255, 0.4)); }
-            100% { transform: scale(1.03); filter: drop-shadow(0 0 35px rgba(0, 243, 255, 0.6)); }
-        }
-
-        .sub-tier-panel {
-            margin-bottom: 40px; padding: 5px 22px;
-            background: linear-gradient(90deg, rgba(255,255,255,0.01), rgba(255,255,255,0.05), rgba(255,255,255,0.01));
-            border-left: 2px solid var(--singularity-neon);
-            border-right: 2px solid var(--plasma-pink);
-            display: inline-block; transform: translateZ(20px);
-        }
-        .sub-tier-text { font-size: 11px; font-weight: 900; letter-spacing: 5px; text-transform: uppercase; color: #fff; text-shadow: 0 0 10px rgba(255,255,255,0.5); }
-
-        /* --- أزرار الشق السيبراني (تأثير انشطار ليزري فخم) --- */
-        .grid-matrix-links { display: flex; flex-direction: column; gap: 18px; transform: translateZ(10px); }
+        .brand-vector { width: 90%; max-width: 260px; margin-bottom: 10px; filter: drop-shadow(0 0 20px var(--vortex-purp)); }
         
-        .matrix-node {
-            display: flex; align-items: center; justify-content: center;
-            text-decoration: none; color: #fff;
-            background: linear-gradient(135deg, rgba(255,255,255,0.02) 0%, rgba(255,255,255,0.01) 100%);
-            padding: 18px; border-radius: 16px;
-            font-size: 16px; font-weight: 900; letter-spacing: 1px;
+        .hud-decoder {
+            font-family: 'Share Tech Mono', monospace; font-size: 12px; color: var(--neon-glow);
+            letter-spacing: 4px; text-transform: uppercase; margin-bottom: 30px;
+        }
+
+        /* عداد المشاهدات المدمج داخل لوحة البيانات التكتيكية */
+        .data-stream-box {
+            width: 100%; background: rgba(0,0,0,0.4); border: 1px solid rgba(255,255,255,0.05);
+            border-radius: 8px; padding: 15px; font-family: 'Share Tech Mono', monospace; font-size: 13px;
+            text-align: left; display: flex; justify-content: space-between; align-items: center;
+        }
+        .data-stream-box span.count-num { color: var(--neon-glow); font-weight: bold; text-shadow: 0 0 10px var(--neon-glow); font-size: 16px; }
+
+        /* --- اللوحة اليمنى: مصفوفة الشبكة التفاعلية (المستقبل الحقيقي) --- */
+        .links-matrix-grid { display: flex; flex-direction: column; gap: 18px; justify-content: center; h-index: 5; }
+
+        /* هندسة الأزرار الجديدة: شق تكتيكي مشطوف يتفاعل في الأبعاد ثلاثية الـ 3D */
+        .matrix-cell {
+            display: flex; align-items: center; justify-content: space-between;
+            text-decoration: none; color: #fff; padding: 22px 30px; border-radius: 12px;
+            background: linear-gradient(90deg, rgba(255,255,255,0.02) 0%, rgba(122, 0, 255, 0.03) 100%);
             border: 1px solid rgba(255, 255, 255, 0.05);
-            position: relative; overflow: hidden;
-            transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+            font-size: 16px; font-weight: 900; letter-spacing: 1.5px;
+            position: relative; overflow: hidden; transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .matrix-cell::after {
+            content: '// CELL_READY'; position: absolute; right: 30px; 
+            font-family: 'Share Tech Mono', monospace; font-size: 11px; color: rgba(255,255,255,0.2);
         }
 
-        /* خطوط طاقة مخفية تنفجر عند اللمس */
-        .matrix-node::before {
-            content: ''; position: absolute; top: 0; left: -100%; width: 100%; height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(0, 243, 255, 0.2), transparent);
-            transition: all 0.6s ease;
+        .matrix-cell:hover {
+            transform: translateX(10px) scale(1.01);
+            background: linear-gradient(90deg, rgba(0, 243, 255, 0.1) 0%, rgba(122, 0, 255, 0.1) 100%);
+            border-color: var(--neon-glow);
+            box-shadow: -10px 0 25px rgba(0, 243, 255, 0.2);
         }
-        .matrix-node:hover::before { left: 100%; }
+        .matrix-cell:hover::after { color: var(--neon-glow); content: '// EXECUTE_'; }
 
-        .matrix-node:hover {
-            transform: translateY(-4px) scale(1.03) rotateX(5deg);
-            border-color: var(--singularity-neon);
-            background: rgba(157, 0, 255, 0.1);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6), 0 0 30px rgba(0, 243, 255, 0.2);
+        /* المتجر الفاخر الحصري المتميز كلياً */
+        .cell-store {
+            background: linear-gradient(90deg, #6200ee 0%, #a000ff 100%);
+            border: none; box-shadow: 0 10px 30px rgba(98, 0, 238, 0.3);
         }
-
-        /* الزر الحصري للمتجر الفاخر الجبار */
-        .singularity-store {
-            background: linear-gradient(90deg, #7000ff 0%, #d000ff 100%);
-            border: none;
-            box-shadow: 0 12px 30px rgba(112, 0, 255, 0.4);
-        }
-        .singularity-store:hover {
-            background: linear-gradient(90deg, #8212ff 0%, #e012ff 100%);
-            box-shadow: 0 20px 45px rgba(157, 0, 255, 0.6), 0 0 25px rgba(255, 0, 127, 0.3);
+        .cell-store:hover {
+            background: linear-gradient(90deg, #7214ff 0%, #b014ff 100%);
+            box-shadow: 0 15px 40px rgba(98, 0, 238, 0.5), -10px 0 20px var(--neon-glow);
         }
 
-        .node-asset { width: 25px; height: 25px; margin-right: 14px; object-fit: contain; }
+        .cell-icon { width: 26px; height: 26px; object-fit: contain; margin-right: 15px; }
+        .inner-flex { display: flex; align-items: center; }
 
-        /* --- هاب النسخ التكتيكي المنشطر --- */
-        .quantum-copy-capsule {
-            background: rgba(0, 0, 0, 0.6);
-            border: 1px solid rgba(157, 0, 255, 0.2);
-            border-radius: 14px; padding: 14px 20px; margin-top: -4px;
-            display: flex; justify-content: space-between; align-items: center;
-            font-size: 13px; font-weight: 700; color: rgba(255, 255, 255, 0.4);
-            cursor: pointer; transition: all 0.3s ease;
+        /* صندوق النسخ المطور المدمج كلياً بنظام التشفير */
+        .crypto-vault-box {
+            background: rgba(0, 0, 0, 0.5); border: 1px dashed rgba(122, 0, 255, 0.4);
+            border-radius: 12px; padding: 16px 30px; display: flex; justify-content: space-between;
+            align-items: center; font-family: 'Share Tech Mono', monospace; font-size: 14px;
+            color: rgba(255,255,255,0.5); cursor: pointer; transition: all 0.2s;
         }
-        .quantum-copy-capsule:hover {
-            background: rgba(255, 0, 127, 0.05);
-            color: var(--plasma-pink);
-            border-color: var(--plasma-pink);
-            box-shadow: 0 0 15px rgba(2ff, 0, 127, 0.2);
+        .crypto-vault-box:hover {
+            border-color: var(--neon-glow); color: var(--neon-glow); background: rgba(0, 243, 255, 0.03);
         }
 
-        /* --- عداد الزوار النيوني المشع --- */
-        .singularity-counter-wrapper { margin-top: 40px; display: flex; justify-content: center; transform: translateZ(15px); }
-        .singularity-badge {
-            display: inline-flex; align-items: center; padding: 10px 28px; font-size: 12px; font-weight: 900;
-            color: rgba(255, 255, 255, 0.5); background: rgba(0, 0, 0, 0.4);
-            border: 1px solid rgba(255, 255, 255, 0.03); border-radius: 100px;
-            letter-spacing: 2px; box-shadow: inset 0 0 10px rgba(0,0,0,0.8);
-        }
-        .singularity-badge span { color: var(--singularity-neon); font-weight: 900; margin-left: 8px; text-shadow: 0 0 15px var(--singularity-neon); }
-
-        /* أيقونات الخلفية الهائمة الطائرة */
-        .drifting-asset {
-            position: fixed; z-index: 2; width: 110px; pointer-events: none; opacity: 0.12;
-            filter: drop-shadow(0 0 40px var(--vortex-purple));
-            animation: cosmicDrift 20s infinite linear;
-        }
-        .asset-ae-node { top: 10%; left: 5%; }
-        .asset-am-node { bottom: 10%; right: 5%; animation-delay: -10s; }
-
-        @keyframes cosmicDrift {
-            0% { transform: translate(0, 0) rotate(0deg) scale(1); }
-            50% { transform: translate(50px, 40px) rotate(180deg) scale(1.2); }
-            100% { transform: translate(0, 0) rotate(360deg) scale(1); }
+        /* --- متوافق بالملي مع الجوال والكمبيوتر بدون تدمير المظهر --- */
+        @media (max-width: 850px) {
+            body { overflow-y: auto; }
+            .dashboard-matrix { grid-template-columns: 1fr; gap: 20px; padding: 15px; }
+            .cyber-panel { padding: 30px 20px; }
+            .top-hud-bar { padding: 12px 15px; font-size: 11px; }
         }
     </style>
 </head>
 <body>
 
-    <!-- تأثير غطاء صدمة الدخول السيرفرية -->
-    <div class="vortex-tunnel-intro"></div>
+    <!-- عناصر الواجهة الكونية الخلفية -->
+    <div class="cyber-grid"></div>
+    <div class="scanline"></div>
 
-    <!-- كانفاس الدوامة الجبار الفخم -->
-    <canvas id="vortexCanvas"></canvas>
+    <!-- شريط القيادة العلوي التكتيكي -->
+    <div class="top-hud-bar">
+        <div>SYS_NODE: VORTX_CORE_v2.6</div>
+        <div class="system-status">NETWORK_STATUS: <span>ONLINE</span></div>
+    </div>
 
-    <!-- الأصول السينمائية بالخلفية -->
-    <img src="ae.png" alt="AE" class="drifting-asset asset-ae-node">
-    <img src="am.png" alt="AM" class="drifting-asset asset-am-node">
-
-    <!-- النواة والكتلة البريميوم الحقيقية -->
-    <div class="vortex-core" id="vortexNode">
+    <!-- مصفوفة لوحة التحكم الشاملة -->
+    <div class="dashboard-matrix">
         
-        <!-- فلك اللوقو المشع البلازمي -->
-        <div class="quantum-avatar-frame">
-            <img src="lg.png" alt="VORTX Ultimate" class="prime-img">
-        </div>
-        
-        <!-- عنوان العرش الفخم الحاد -->
-        <div class="dimension-title">
-            <img src="vr.png" alt="VORTX" class="vector-brand">
-        </div>
-        
-        <div class="sub-tier-panel">
-            <span class="sub-tier-text">Master Your Motion</span>
-        </div>
-
-        <!-- مصفوفة الأزرار الليزرية المنشطرة -->
-        <div class="grid-matrix-links">
-            <a href="store.html" class="matrix-node singularity-store">🛒 Online Store</a>
+        <!-- اللوحة اليسرى: معلومات الهوية والمسار والزوار -->
+        <div class="cyber-panel identity-module">
+            <div class="quantum-frame">
+                <img src="lg.png" alt="VORTX Avatar" class="avatar-core">
+            </div>
+            <img src="vr.png" alt="VORTX" class="brand-vector">
+            <div class="hud-decoder">MASTER YOUR MOTION</div>
             
-            <a href="https://www.tiktok.com/@ortr.1?_r=1&_t=ZS-94WfLhF9TMt" target="_blank" class="matrix-node">
-                <img src="tik.png" alt="TikTok" class="node-asset"> TikTok
+            <!-- لوحة العداد المدمجة الاحترافية -->
+            <div class="data-stream-box">
+                <span>[✦] TOTAL_TRAFFIC_LOG:</span>
+                <span class="count-num" id="liveViews">...</span>
+            </div>
+        </div>
+
+        <!-- اللوحة اليمنى: مصفوفة الشقوق والروابط التكتيكية -->
+        <div class="cyber-panel links-matrix-grid">
+            
+            <a href="store.html" class="matrix-cell cell-store">
+                <span class="inner-flex">🛒 Online Store</span>
             </a>
             
-            <a href="https://t.me/v_ortx" target="_blank" class="matrix-node">
-                <img src="tly.png" alt="Telegram" class="node-asset"> Telegram
+            <a href="https://www.tiktok.com/@ortr.1?_r=1&_t=ZS-94WfLhF9TMt" target="_blank" class="matrix-cell">
+                <span class="inner-flex"><img src="tik.png" alt="TikTok" class="cell-icon"> TikTok</span>
             </a>
             
-            <!-- وحدة النسخ المشعة المتفاعلة -->
-            <div class="quantum-copy-capsule" onclick="hologramCopy()" id="quantumCopy">
-                <span>https://t.me/v_ortx</span>
-                <span>📋</span>
+            <a href="https://t.me/v_ortx" target="_blank" class="matrix-cell">
+                <span class="inner-flex"><img src="tly.png" alt="Telegram" class="cell-icon"> Telegram</span>
+            </a>
+            
+            <!-- وحدة التشفير والنسخ السريع -->
+            <div class="crypto-vault-box" onclick="executeVaultCopy()" id="vaultBox">
+                <span>🔗 t.me/v_ortx</span>
+                <span>[COPY_SECURE]</span>
             </div>
 
-            <a href="https://www.instagram.com/toix.8i?igsh=Z3B1eWdwNGJocW9q" target="_blank" class="matrix-node">
-                <img src="ins.png" alt="Instagram" class="node-asset"> Instagram
+            <a href="https://www.instagram.com/toix.8i?igsh=Z3B1eWdwNGJocW9q" target="_blank" class="matrix-cell">
+                <span class="inner-flex"><img src="ins.png" alt="Instagram" class="cell-icon"> Instagram</span>
             </a>
+            
         </div>
 
-        <!-- عداد زوار النواة السيبرانية -->
-        <div class="singularity-counter-wrapper">
-            <div class="singularity-badge">👁 CORE VISITORS: <span id="vortxCounter">...</span></div>
-        </div>
     </div>
 
     <script>
-        // كسر كليك يمين لفرض هيبة الواجهة ومنع التلاعب
+        // إقفال كليك يمين لثبيت الطابع الاحترافي التام لمنظومتك
         document.addEventListener('contextmenu', e => e.preventDefault());
 
-        // فيزياء الدوامة الفضائية ثلاثية الأبعاد بالكامل عبر الـ Canvas
-        const canvas = document.getElementById('vortexCanvas');
-        const ctx = canvas.getContext('2d');
-        let w, h, centerX, centerY;
-        
-        function updateSize() {
-            w = canvas.width = window.innerWidth;
-            h = canvas.height = window.innerHeight;
-            centerX = w / 2;
-            centerY = h / 2;
-        }
-        updateSize();
-        window.addEventListener('resize', updateSize);
-
-        const particles = [];
-        const particleCount = 120; // متناسق ومضمون ما يسبب تعليق أو فشل للكود نهائياً
-
-        for (let i = 0; i < particleCount; i++) {
-            particles.push({
-                angle: Math.random() * Math.PI * 2,
-                radius: Math.random() * Math.max(w, h),
-                speed: Math.random() * 0.02 + 0.005,
-                radialSpeed: Math.random() * 1 + 0.5,
-                size: Math.random() * 2 + 0.5,
-                color: i % 2 === 0 ? 'rgba(0, 243, 255, ' : 'rgba(157, 0, 255, '
-            });
-        }
-
-        function drawVortex() {
-            ctx.fillStyle = 'rgba(2, 0, 5, 0.12)'; // تأثير الذيل الفخم الممتد للتأثير الرياضي
-            ctx.fillRect(0, 0, w, h);
-
-            particles.forEach(p => {
-                p.angle += p.speed;
-                p.radius -= p.radialSpeed;
-
-                if (p.radius <= 0) {
-                    p.radius = Math.max(w, h) * 0.8;
-                    p.angle = Math.random() * Math.PI * 2;
-                }
-
-                const x = centerX + Math.cos(p.angle) * p.radius;
-                const y = centerY + Math.sin(p.angle) * p.radius;
-
-                // احتساب الشفافية بناءً على القرب من النواة المركزية للموقع
-                const alpha = Math.min(1, (p.radius / (Math.max(w, h) * 0.8)));
-
-                ctx.fillStyle = p.color + alpha + ')';
-                ctx.beginPath();
-                ctx.arc(x, y, p.size, 0, Math.PI * 2);
-                ctx.fill();
-            });
-
-            requestAnimationFrame(drawVortex);
-        }
-        drawVortex();
-
-        // استدعاء وتحديث داتا العداد الحية الكونية
         window.addEventListener('load', () => {
-            const counterNode = document.getElementById('vortxCounter');
-            const localCache = localStorage.getItem('vortx_prime_count') || "3,500";
-            counterNode.innerText = localCache;
+            // مزامنة داتا حركة الزوار بشكل سيبراني مشفر ونظيف
+            const trafficNode = document.getElementById('liveViews');
+            const cachedViews = localStorage.getItem('vortx_matrix_views') || "3,500";
+            trafficNode.innerText = cachedViews;
 
             fetch(`https://api.counterapi.dev/v1/vortx_official_page/total_visits/up`)
                 .then(res => res.json())
                 .then(data => {
                     if(data && data.count) {
-                        const preciseNum = data.count.toLocaleString();
-                        counterNode.innerText = preciseNum;
-                        localStorage.setItem('vortx_prime_count', preciseNum);
+                        const packedNum = data.count.toLocaleString();
+                        trafficNode.innerText = packedNum;
+                        localStorage.setItem('vortx_matrix_views', packedNum);
                     }
-                }).catch(() => console.log("Quantum singularity sync stable."));
+                }).catch(() => console.log("System terminal secure sync active."));
         });
 
-        // آلية النسخ الذكي التكتيكي الفوري السلس
-        function hologramCopy() {
-            const destinationUrl = "https://t.me/v_ortx";
-            navigator.clipboard.writeText(destinationUrl).then(() => {
-                const copyCapsule = document.getElementById('quantumCopy');
-                const backupHTML = copyCapsule.innerHTML;
-                copyCapsule.innerHTML = '<span style="color: var(--singularity-neon); font-weight: 900; width: 100%; text-align: center; letter-spacing: 2px;">SINGULARITY LINK COPIED ✔️</span>';
-                setTimeout(() => { copyCapsule.innerHTML = backupHTML; }, 1600);
+        // دالة النسخ التكتيكي الفوري المتفاعل مع الهوية الجديدة
+        function executeVaultCopy() {
+            const secureLink = "https://t.me/v_ortx";
+            navigator.clipboard.writeText(secureLink).then(() => {
+                const vault = document.getElementById('vaultBox');
+                const oldContent = vault.innerHTML;
+                vault.innerHTML = '<span style="color: var(--neon-glow); font-weight: bold; width: 100%; text-align: center; letter-spacing: 2px;">[// SYSTEM_LINK_COPIED_SUCCESSFULLY]</span>';
+                setTimeout(() => { vault.innerHTML = oldContent; }, 1600);
             });
         }
-
-        // تأثير تتبع حركة الفأرة الذكي ثلاثي الأبعاد للكارت الرئيسي لعمق أسطوري
-        const coreNode = document.getElementById('vortexNode');
-        document.addEventListener('mousemove', (e) => {
-            const xAxis = (window.innerWidth / 2 - e.clientX) / 35;
-            const yAxis = (window.innerHeight / 2 - e.clientY) / 35;
-            coreNode.style.transform = `rotateY(${xAxis}deg) rotateX(${yAxis}deg)`;
-        });
-
-        document.addEventListener('mouseleave', () => {
-            coreNode.style.transform = `rotateY(0deg) rotateX(0deg)`;
-            coreNode.style.transition = 'all 0.5s ease';
-        });
-        document.addEventListener('mouseenter', () => {
-            coreNode.style.transition = 'none';
-        });
     </script>
 </body>
 </html>
