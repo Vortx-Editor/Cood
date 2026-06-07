@@ -6,7 +6,7 @@
     <title>VORTX | Pro Hub</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;900&family=Tajawal:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght=700;900&family=Tajawal:wght=400;700&display=swap" rel="stylesheet">
     <style>
         :root {
             --neon-purple: #9d00ff;
@@ -37,12 +37,12 @@
             transform: translateZ(0);
         }
 
-        /* --- 1. Background Effects --- */
+        /* --- 1. Background Effects (المطر الخلفي المطور) --- */
         #rainCanvas {
             position: fixed; top: 0; left: 0;
             width: 100vw; height: 100vh;
             z-index: 1; pointer-events: none;
-            opacity: 0; transition: opacity 1s ease-in; 
+            opacity: 1; transition: opacity 1s ease-in; 
         }
 
         .lightning {
@@ -71,12 +71,12 @@
 
         /* --- 3. Main Glass Container --- */
         .container {
-            background: linear-gradient(135deg, rgba(0, 0, 0, 0.6) 0%, rgba(15, 0, 25, 0.4) 100%);
-            backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
-            border: 1px solid rgba(157, 0, 255, 0.2); border-radius: 30px; padding: 50px 30px;
+            background: linear-gradient(135deg, rgba(5, 0, 10, 0.75) 0%, rgba(20, 0, 35, 0.6) 100%);
+            backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(157, 0, 255, 0.3); border-radius: 30px; padding: 50px 30px;
             width: 100%; max-width: 440px; text-align: center;
             position: relative; z-index: 100;
-            box-shadow: 0 0 40px rgba(157, 0, 255, 0.1), inset 0 0 10px rgba(255, 255, 255, 0.02);
+            box-shadow: 0 0 40px rgba(157, 0, 255, 0.2), inset 0 0 15px rgba(255, 255, 255, 0.03);
             overflow: hidden; margin: 0 auto; 
             opacity: 0; transform: scale(0.95);
             will-change: transform, opacity;
@@ -86,7 +86,7 @@
 
         #innerBouncingCanvas {
             position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 0; pointer-events: none;
-            opacity: 0; transition: opacity 1s ease-in;
+            opacity: 1; transition: opacity 1s ease-in;
         }
 
         /* --- 4. Premium Staggered Entrance Animation --- */
@@ -109,12 +109,13 @@
         .link-btn:nth-child(5) { animation-delay: 0.7s; } 
         .visitor-badge-container { animation-delay: 0.8s; }
 
-        /* --- 5. Logo & Title --- */
+        /* --- 5. Logo & Title (تعديل الإطار المضيء) --- */
         .logo-container {
             width: 140px; height: 140px; margin: 0 auto 15px; border-radius: 50%; padding: 4px;
-            background: var(--neon-purple); box-shadow: 0 0 25px var(--neon-purple);
+            background: linear-gradient(135deg, var(--neon-purple), var(--neon-blue)); 
+            box-shadow: 0 0 30px rgba(157, 0, 255, 0.8), 0 0 15px rgba(0, 243, 255, 0.5);
         }
-        .logo { width: 100%; height: 100%; border-radius: 50%; object-fit: cover; border: 3px solid #05000a; }
+        .logo { width: 100%; height: 100%; border-radius: 50%; object-fit: cover; border: 4px solid #05000a; }
 
         .title-container { margin: 15px auto 5px; }
         .title-img { width: 85%; max-width: 250px; display: block; margin: 0 auto; filter: drop-shadow(0 0 25px rgba(157, 0, 255, 0.9)); }
@@ -266,54 +267,69 @@
         window.addEventListener('load', () => {
             setTimeout(() => {
                 
+                // --- تعديل تأثير المطر الخلفي (توضيح الجزيئات وتكبيرها) ---
                 const rainCanvas = document.getElementById('rainCanvas');
-                rainCanvas.style.opacity = "1";
                 const ctxRain = rainCanvas.getContext('2d', { alpha: true });
                 function resizeRain() { rainCanvas.width = window.innerWidth; rainCanvas.height = window.innerHeight; }
                 resizeRain();
                 const rainParticles = [];
-                for (let i = 0; i < 40; i++) { 
-                    rainParticles.push({ x: Math.random() * rainCanvas.width, y: Math.random() * rainCanvas.height, size: Math.random() * 2, speedY: Math.random() * 0.4 + 0.1, opacity: Math.random() * 0.5 + 0.1 });
+                for (let i = 0; i < 75; i++) { // زدنا العدد لـ 75 جزيء بدال 40
+                    rainParticles.push({ 
+                        x: Math.random() * rainCanvas.width, 
+                        y: Math.random() * rainCanvas.height, 
+                        size: Math.random() * 3 + 1.5, // كبّرنا الحجم عشان يبان
+                        speedY: Math.random() * 0.5 + 0.2, 
+                        opacity: Math.random() * 0.6 + 0.3 // زدنا الشفافية عشان يوضح
+                    });
                 }
                 function animateRain() {
                     ctxRain.clearRect(0, 0, rainCanvas.width, rainCanvas.height); 
                     rainParticles.forEach(p => {
-                        ctxRain.fillStyle = `rgba(157, 0, 255, ${p.opacity})`; ctxRain.beginPath(); ctxRain.arc(p.x, p.y, p.size, 0, Math.PI * 2); ctxRain.fill();
+                        // خلطنا اللون البنفسجي مع الأزرق عشان يبرز في الخلفية السوداء
+                        ctxRain.fillStyle = `rgba(160, 30, 255, ${p.opacity})`; 
+                        ctxRain.beginPath(); ctxRain.arc(p.x, p.y, p.size, 0, Math.PI * 2); ctxRain.fill();
                         p.y += p.speedY; if (p.y > rainCanvas.height) { p.y = 0; p.x = Math.random() * rainCanvas.width; }
                     }); requestAnimationFrame(animateRain);
                 } animateRain();
 
+                // --- تعديل تأثير الخطوط المتحركة داخل الكرت (توضيحها) ---
                 const innerCanvas = document.getElementById('innerBouncingCanvas');
-                innerCanvas.style.opacity = "1";
                 const ctxInner = innerCanvas.getContext('2d');
                 const container = document.getElementById('mainContainer');
                 let innerW, innerH;
                 function resizeInnerCanvas() { innerW = container.offsetWidth; innerH = container.offsetHeight; innerCanvas.width = innerW; innerCanvas.height = innerH; }
                 resizeInnerCanvas();
                 const linesParticles = [];
-                for(let i=0; i<15; i++) { linesParticles.push({ x: Math.random() * 300, y: Math.random() * 300, vx: (Math.random() - 0.5) * 1.5, vy: (Math.random() - 0.5) * 1.5 }); }
+                for(let i=0; i<22; i++) { linesParticles.push({ x: Math.random() * 300, y: Math.random() * 300, vx: (Math.random() - 0.5) * 1.5, vy: (Math.random() - 0.5) * 1.5 }); }
                 function animateInnerLines() {
                     ctxInner.clearRect(0, 0, innerW, innerH);
                     for(let i=0; i<linesParticles.length; i++) {
                         let p = linesParticles[i]; p.x += p.vx; p.y += p.vy;
                         if(p.x <= 0 || p.x >= innerW) p.vx *= -1; if(p.y <= 0 || p.y >= innerH) p.vy *= -1;
                     }
-                    ctxInner.lineWidth = 1;
+                    ctxInner.lineWidth = 1.5; // رفعنا سمك الخط من 1 إلى 1.5
                     for(let i=0; i<linesParticles.length; i++) {
                         for(let j=i+1; j<linesParticles.length; j++) {
                             let dx = linesParticles[i].x - linesParticles[j].x; let dy = linesParticles[i].y - linesParticles[j].y;
                             let dist = Math.sqrt(dx*dx + dy*dy);
-                            if(dist < 80) { ctxInner.beginPath(); ctxInner.strokeStyle = `rgba(157, 0, 255, ${1 - dist/80})`; ctxInner.moveTo(linesParticles[i].x, linesParticles[i].y); ctxInner.lineTo(linesParticles[j].x, linesParticles[j].y); ctxInner.stroke(); }
+                            if(dist < 95) { // رفعنا مدى الاتصال عشان تشبك الخطوط أكثر وتوضح
+                                ctxInner.beginPath(); 
+                                // جعلنا لون الخطوط مكس نيوني واضح جداً
+                                ctxInner.strokeStyle = `rgba(0, 243, 255, ${(1 - dist/95) * 0.6})`; 
+                                ctxInner.moveTo(linesParticles[i].x, linesParticles[i].y); 
+                                ctxInner.lineTo(linesParticles[j].x, linesParticles[j].y); 
+                                ctxInner.stroke(); 
+                            }
                         }
                     } requestAnimationFrame(animateInnerLines);
                 } animateInnerLines();
                 window.addEventListener('resize', () => { resizeRain(); resizeInnerCanvas(); });
 
-                // --- تعديل العداد الذكي المضمون بفضل الله ---
+                // --- العداد الذكي المضمون ---
                 const counterNamespace = "vortx_official_page"; 
                 const counterKey = "total_visits";
                 const vCountElement = document.getElementById('vCount');
-                const baseOffset = 13578; // العدد الأساسي اللي طلبته يبدأ منه
+                const baseOffset = 13578; 
                 
                 const savedCount = localStorage.getItem('vortx_last_count');
                 if (savedCount) { 
@@ -326,7 +342,6 @@
                   .then(response => response.json())
                   .then(data => {
                       if(data && data.count) {
-                          // جمع العدد الحقيقي من السيرفر مع الـ 13578 عشان العد يكمل صح وما يغلط أبداً
                           const finalCount = baseOffset + data.count;
                           vCountElement.innerText = finalCount.toLocaleString();
                           localStorage.setItem('vortx_last_count', finalCount);
