@@ -39,65 +39,177 @@
         }
 
         /* --- 1. Background Effects --- */
-        #rainCanvas { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; z-index: 1; pointer-events: none; opacity: 1; transition: opacity 1s ease-in; }
-        .lightning { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(200, 0, 255, 0.15); opacity: 0; pointer-events: none; z-index: 9998; transition: opacity 0.1s; }
+        #rainCanvas {
+            position: fixed; top: 0; left: 0;
+            width: 100vw; height: 100vh;
+            z-index: 1; pointer-events: none;
+            opacity: 0; transition: opacity 1s ease-in; 
+        }
+
+        .lightning {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(200, 0, 255, 0.15); opacity: 0;
+            pointer-events: none; z-index: 9998; transition: opacity 0.1s;
+        }
 
         /* --- 2. Corner Icons --- */
-        .bg-icon { position: absolute; z-index: 150; width: 120px; pointer-events: none; opacity: 0; will-change: transform, opacity; }
-        .bg-ae { top: 20px; right: 20px; filter: drop-shadow(0 0 25px var(--neon-purple)); animation: fadeInIcon 0.5s ease forwards 0.2s, float 6s infinite 0.5s; }
-        .bg-am { bottom: 85px; left: 20px; border-radius: 50%; filter: drop-shadow(0 0 25px var(--neon-green-dark)); animation: fadeInIcon 0.5s ease forwards 0.2s, float-rev 7s infinite 0.5s; }
+        .bg-icon {
+            position: absolute; z-index: 150; width: 120px; pointer-events: none; opacity: 0; 
+            will-change: transform, opacity;
+        }
+        .bg-ae { 
+            top: 20px; right: 20px; filter: drop-shadow(0 0 25px var(--neon-purple)); 
+            animation: fadeInIcon 0.5s ease forwards 0.2s, float 6s infinite 0.5s;
+        }
+        .bg-am { 
+            bottom: 85px; left: 20px; border-radius: 50%; filter: drop-shadow(0 0 25px var(--neon-green-dark)); 
+            animation: fadeInIcon 0.5s ease forwards 0.2s, float-rev 7s infinite 0.5s;
+        }
+        
         @keyframes fadeInIcon { to { opacity: 1; } }
         @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-15px); } }
         @keyframes float-rev { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(15px); } }
 
         /* --- 3. Main Glass Container --- */
-        .container { background: linear-gradient(135deg, rgba(5, 0, 10, 0.75) 0%, rgba(20, 0, 35, 0.6) 100%); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); border: 1px solid rgba(157, 0, 255, 0.3); border-radius: 30px; padding: 50px 30px; width: 100%; max-width: 440px; text-align: center; position: relative; z-index: 100; box-shadow: 0 0 40px rgba(157, 0, 255, 0.2), inset 0 0 15px rgba(255, 255, 255, 0.03); overflow: hidden; margin: 0 auto; opacity: 0; transform: scale(0.95); animation: containerReveal 0.4s cubic-bezier(0.2, 0.8, 0.2, 1) forwards; }
+        .container {
+            background: linear-gradient(135deg, rgba(0, 0, 0, 0.6) 0%, rgba(15, 0, 25, 0.4) 100%);
+            backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+            border: 1px solid rgba(157, 0, 255, 0.2); border-radius: 30px; padding: 50px 30px;
+            width: 100%; max-width: 440px; text-align: center;
+            position: relative; z-index: 100;
+            box-shadow: 0 0 40px rgba(157, 0, 255, 0.1), inset 0 0 10px rgba(255, 255, 255, 0.02);
+            overflow: hidden; margin: 0 auto; 
+            opacity: 0; transform: scale(0.95);
+            will-change: transform, opacity;
+            animation: containerReveal 0.4s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+        }
         @keyframes containerReveal { to { opacity: 1; transform: scale(1); } }
-        #innerBouncingCanvas { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 0; pointer-events: none; opacity: 1; transition: opacity 1s ease-in; }
 
-        /* --- 4. Entrance --- */
-        .logo-container, .title-container, .crystal-panel, .link-btn, .visitor-badge-container, .copy-box { position: relative; z-index: 10; opacity: 0; animation: fadeInUpBlur 0.5s cubic-bezier(0.2, 0.8, 0.2, 1) forwards; }
-        @keyframes fadeInUpBlur { 0% { opacity: 0; transform: translateY(20px); filter: blur(5px); } 100% { opacity: 1; transform: translateY(0); filter: blur(0); } }
-        .logo-container { animation-delay: 0.1s; } .title-container { animation-delay: 0.2s; } .crystal-panel { animation-delay: 0.3s; } .link-btn:nth-child(1) { animation-delay: 0.4s; } .link-btn:nth-child(2) { animation-delay: 0.5s; } .link-btn:nth-child(3) { animation-delay: 0.6s; } .copy-box { animation-delay: 0.65s; } .link-btn:nth-child(5) { animation-delay: 0.7s; } .visitor-badge-container { animation-delay: 0.8s; }
+        #innerBouncingCanvas {
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 0; pointer-events: none;
+            opacity: 0; transition: opacity 1s ease-in;
+        }
+
+        /* --- 4. Premium Staggered Entrance Animation --- */
+        .logo-container, .title-container, .crystal-panel, .link-btn, .visitor-badge-container, .copy-box { 
+            position: relative; z-index: 10; opacity: 0; 
+            animation: fadeInUpBlur 0.5s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+        }
+        @keyframes fadeInUpBlur {
+            0% { opacity: 0; transform: translateY(20px); filter: blur(5px); }
+            100% { opacity: 1; transform: translateY(0); filter: blur(0); }
+        }
+
+        .logo-container { animation-delay: 0.1s; }
+        .title-container { animation-delay: 0.2s; }
+        .crystal-panel { animation-delay: 0.3s; }
+        .link-btn:nth-child(1) { animation-delay: 0.4s; } 
+        .link-btn:nth-child(2) { animation-delay: 0.5s; } 
+        .link-btn:nth-child(3) { animation-delay: 0.6s; } 
+        .copy-box { animation-delay: 0.65s; } 
+        .link-btn:nth-child(5) { animation-delay: 0.7s; } 
+        .visitor-badge-container { animation-delay: 0.8s; }
 
         /* --- 5. Logo & Title --- */
-        .logo-container { width: 140px; height: 140px; margin: 0 auto 15px; border-radius: 50%; padding: 4px; background: linear-gradient(135deg, var(--neon-purple), var(--neon-blue)); box-shadow: 0 0 30px rgba(157, 0, 255, 0.8), 0 0 15px rgba(0, 243, 255, 0.5); }
-        .logo { width: 100%; height: 100%; border-radius: 50%; object-fit: cover; border: 4px solid #05000a; }
-        .title-container { margin: 15px auto 5px; } .title-img { width: 85%; max-width: 250px; display: block; margin: 0 auto; filter: drop-shadow(0 0 25px rgba(157, 0, 255, 0.9)); }
-        .glitch { animation: glitch 5s infinite; } @keyframes glitch { 0%, 92%, 100% { transform: translate(0); } 94% { transform: translate(2px, -2px); } 96% { transform: translate(-2px, 2px); } }
+        .logo-container {
+            width: 140px; height: 140px; margin: 0 auto 15px; border-radius: 50%; padding: 4px;
+            background: var(--neon-purple); box-shadow: 0 0 25px var(--neon-purple);
+        }
+        .logo { width: 100%; height: 100%; border-radius: 50%; object-fit: cover; border: 3px solid #05000a; }
+
+        .title-container { margin: 15px auto 5px; }
+        .title-img { width: 85%; max-width: 250px; display: block; margin: 0 auto; filter: drop-shadow(0 0 25px rgba(157, 0, 255, 0.9)); }
+        .glitch { animation: glitch 5s infinite; } 
+        @keyframes glitch { 0%, 92%, 100% { transform: translate(0); } 94% { transform: translate(2px, -2px); } 96% { transform: translate(-2px, 2px); } }
 
         /* --- 6. Crystal Panel --- */
-        .crystal-panel { margin: 5px auto 30px; padding: 12px 25px; background: rgba(255, 255, 255, 0.02); backdrop-filter: blur(15px); border-radius: 12px; overflow: hidden; display: inline-block; box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3); }
-        .crystal-text { font-family: 'Montserrat', sans-serif; font-weight: 900; font-size: 14px; letter-spacing: 2px; text-transform: uppercase; background: linear-gradient(180deg, #ffffff 0%, #9aa0a6 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .crystal-panel {
+            margin: 5px auto 30px; padding: 12px 25px; background: rgba(255, 255, 255, 0.02);
+            backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px);
+            border-radius: 12px; overflow: hidden; display: inline-block; box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+        .crystal-text {
+            font-family: 'Montserrat', sans-serif; font-weight: 900; font-size: 14px; letter-spacing: 2px; text-transform: uppercase;
+            background: linear-gradient(180deg, #ffffff 0%, #9aa0a6 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+            filter: drop-shadow(0px 2px 3px rgba(0, 0, 0, 0.8)); position: relative; z-index: 2;
+        }
 
         /* --- 7. Buttons --- */
         .links-wrapper { display: flex; flex-direction: column; gap: 15px; }
-        .link-btn { display: flex; align-items: center; justify-content: center; text-decoration: none; color: #fff; background: rgba(0, 0, 0, 0.5); padding: 18px; border-radius: 15px; font-size: 17px; font-weight: 700; border: 1px solid rgba(157, 0, 255, 0.3); transition: all 0.2s ease; }
+        .link-btn {
+            display: flex; align-items: center; justify-content: center;
+            text-decoration: none; color: #fff; background: rgba(0, 0, 0, 0.5);
+            padding: 18px; border-radius: 15px; font-size: 17px; font-weight: 700;
+            border: 1px solid rgba(157, 0, 255, 0.3); transition: all 0.2s ease;
+        }
         .link-btn:hover { transform: scale(1.05); box-shadow: 0 0 15px #b400ff, 0 0 30px #7a00ff; border-color: var(--neon-purple); }
+
         .store-btn { background: linear-gradient(90deg, #4a00e0, #8e2de2); box-shadow: 0 0 15px rgba(157, 0, 255, 0.3); }
         .btn-icon { width: 44px; height: 44px; margin-right: 12px; object-fit: contain; pointer-events: none;}
-        .btn-icon-telegram { transform: scale(1.3); } .btn-icon-instagram { transform: scale(1.10); } 
-        .glow-tiktok { filter: drop-shadow(0 0 8px rgba(220, 220, 220, 0.9)); } .glow-telegram { filter: drop-shadow(0 0 8px #00f3ff); } .glow-instagram { filter: drop-shadow(0 0 8px #ff007f); }
+        .btn-icon-telegram { transform: scale(1.3); }
+        .btn-icon-instagram { transform: scale(1.10); } 
+        
+        .glow-tiktok { filter: drop-shadow(0 0 8px rgba(220, 220, 220, 0.9)); }
+        .glow-telegram { filter: drop-shadow(0 0 8px #00f3ff); }
+        .glow-instagram { filter: drop-shadow(0 0 8px #ff007f); }
+
         .btn-blue-reaction { background: rgba(0, 243, 255, 0.2) !important; box-shadow: 0 0 20px #00f3ff, 0 0 40px #00f3ff !important; border-color: #00f3ff !important; transform: scale(1.05) !important; }
 
-        /* --- 8. Copy Box --- */
-        .copy-box { background: rgba(255, 255, 255, 0.03); border: 1px dashed rgba(0, 243, 255, 0.3); border-radius: 10px; padding: 15px 20px; margin-top: -8px; margin-bottom: 2px; display: flex; justify-content: space-between; align-items: center; font-size: 16px; font-weight: 700; color: rgba(255, 255, 255, 0.7); cursor: pointer; transition: all 0.3s ease; }
-        .copy-box:hover { background: rgba(0, 243, 255, 0.1); color: #00f3ff; border-color: #00f3ff; transform: scale(1.02); }
+        /* --- صندوق النسخ الجديد المطور --- */
+        .copy-box {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px dashed rgba(0, 243, 255, 0.3);
+            border-radius: 10px;
+            padding: 15px 20px; 
+            margin-top: -8px; 
+            margin-bottom: 2px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 16px; 
+            font-weight: 700; 
+            color: rgba(255, 255, 255, 0.7); 
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .copy-box:hover {
+            background: rgba(0, 243, 255, 0.1);
+            color: #00f3ff;
+            border-color: #00f3ff;
+            transform: scale(1.02);
+        }
         .copy-icon { font-size: 18px; filter: grayscale(100%); transition: 0.3s; }
         .copy-box:hover .copy-icon { filter: grayscale(0%); }
 
-        /* --- 9. Visitor Badge --- */
+        /* --- 8. Visitor Badge --- */
         .visitor-badge-container { margin-top: 35px; display: flex; justify-content: center; }
-        .visitor-badge { display: inline-flex; align-items: center; padding: 10px 25px; font-size: 14px; color: rgba(255, 255, 255, 0.8); background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.15); border-radius: 20px; }
-        .visitor-badge span { color: #d866ff; font-weight: 900; margin-left: 5px; }
+        .visitor-badge { display: inline-flex; align-items: center; padding: 10px 25px; font-size: 14px; color: rgba(255, 255, 255, 0.8); background: rgba(255, 255, 255, 0.03); backdrop-filter: blur(15px); border: 1px solid rgba(255, 255, 255, 0.15); border-radius: 20px; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); letter-spacing: 1px; }
+        .visitor-badge span { color: #d866ff; font-weight: 900; margin-left: 5px; text-shadow: 0 0 8px rgba(216, 102, 255, 0.6); font-size: 15px; }
 
-        /* --- 10. Robot --- */
+        /* --- 9. Cyber Robot --- */
         .robot-wrapper { position: absolute; top: 45px; left: 50%; margin-left: -22.5px; width: var(--robot-size); height: var(--robot-size); z-index: 9999; touch-action: none; cursor: grab; opacity: 0; transition: opacity 0.5s; }
-        .robot-body { width: 100%; height: 80%; background: linear-gradient(135deg, #2b004a, var(--robot-color)); border-radius: 12px; position: relative; box-shadow: 0 0 15px var(--robot-color); border: 1px solid rgba(255, 255, 255, 0.3); }
-        .robot-eye { width: 6px; height: 6px; background: #00f3ff; border-radius: 50%; }
-        .robot-mouth { width: 14px; height: 6px; position: absolute; bottom: 25%; left: 50%; transform: translateX(-50%); border-bottom: 2px solid #00f3ff; }
-        .robot-propeller { width: 60%; height: 4px; background: rgba(255, 255, 255, 0.8); position: absolute; top: -6px; left: 50%; transform: translateX(-50%); }
-        .light-beam { position: absolute; top: 50%; left: 22px; height: 35px; background: linear-gradient(to right, rgba(0, 243, 255, 0.8), rgba(0, 243, 255, 0)); transform-origin: left center; opacity: 0; pointer-events: none; }
+        .robot-wrapper:active { cursor: grabbing; }
+        .robot-mesh { position: relative; width: 100%; height: 100%; animation: robotIdle 3s ease-in-out infinite; }
+        .robot-body { width: 100%; height: 80%; background: linear-gradient(135deg, #2b004a, var(--robot-color)); border-radius: 12px 12px 8px 8px; position: relative; box-shadow: 0 0 15px var(--robot-color); border: 1px solid rgba(255, 255, 255, 0.3); }
+        .eyes-container { display: flex; justify-content: space-between; width: 22px; position: absolute; top: 30%; left: 50%; transform: translateX(-50%); }
+        .robot-eye { width: 6px; height: 6px; background: #00f3ff; border-radius: 50%; box-shadow: 0 0 8px #00f3ff; animation: blink 4s infinite; }
+        .robot-mouth { width: 14px; height: 6px; position: absolute; bottom: 25%; left: 50%; transform: translateX(-50%); border-bottom: 2px solid #00f3ff; border-radius: 0 0 10px 10px; }
+        .robot-propeller { width: 60%; height: 4px; background: rgba(255, 255, 255, 0.8); position: absolute; top: -6px; left: 50%; transform: translateX(-50%); border-radius: 2px; animation: spinBlade 0.1s linear infinite; }
+        .light-beam { position: absolute; top: 50%; left: 22px; height: 35px; background: linear-gradient(to right, rgba(0, 243, 255, 0.8), rgba(0, 243, 255, 0)); transform-origin: left center; opacity: 0; pointer-events: none; transition: opacity 0.3s; clip-path: polygon(0 40%, 100% 0, 100% 100%, 0 60%); z-index: -1; }
+        @keyframes robotIdle { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
+        @keyframes spinBlade { 0% { transform: translateX(-50%) rotateY(0deg); } 100% { transform: translateX(-50%) rotateY(360deg); } }
+        @keyframes blink { 0%, 96%, 98% { transform: scaleY(1); } 97% { transform: scaleY(0.1); } }
+        .robot-spin { animation: quickSpin 0.5s ease-out !important; }
+        @keyframes quickSpin { 0% { transform: rotate(0deg) scale(1.2); } 100% { transform: rotate(360deg) scale(1); } }
+        .robot-shake { animation: shakeDust 0.6s ease-in-out !important; }
+        @keyframes shakeDust { 0%, 100% { transform: translateX(0) rotate(0); } 20%, 60% { transform: translateX(-5px) rotate(-10deg); } 40%, 80% { transform: translateX(5px) rotate(10deg); } }
+        .robot-red-theme .robot-body { background: linear-gradient(135deg, #4a0000, var(--robot-red)); box-shadow: 0 0 20px var(--robot-red); }
+
+        /* --- 10. PC Layout Fix --- */
+        @media (min-width: 768px) {
+            .bg-ae { right: calc(50% - 320px) !important; }
+            .bg-am { left: calc(50% - 320px) !important; }
+        }
     </style>
 </head>
 <body>
@@ -121,13 +233,19 @@
 
     <div class="container" id="mainContainer">
         <canvas id="innerBouncingCanvas"></canvas>
+
         <div class="logo-container"><img src="lg.png" alt="Avatar" class="logo"></div>
-        <div class="title-container"><img src="vr.png" alt="VORTX" class="title-img glitch"></div>
+        
+        <div class="title-container">
+            <img src="vr.png" alt="VORTX" class="title-img glitch">
+        </div>
+        
         <div class="crystal-panel"><span class="crystal-text">Master Your Motion</span></div>
 
         <div class="links-wrapper">
             <a href="store.html" class="link-btn store-btn">🛒 Online Store</a>
             <a href="https://www.tiktok.com/@ortr.1?_r=1&_t=ZS-94WfLhF9TMt" target="_blank" class="link-btn"><img src="tik.png" alt="TikTok" class="btn-icon glow-tiktok"> TikTok</a>
+            
             <a href="https://t.me/v_ortx" target="_blank" class="link-btn" id="telegram-btn"><img src="tly.png" alt="Telegram" class="btn-icon btn-icon-telegram glow-telegram"> Telegram</a>
             
             <div class="copy-box" onclick="copyTelegramLink()" id="copyBox">
@@ -139,27 +257,155 @@
         </div>
 
         <div class="visitor-badge-container">
-            <div class="visitor-badge">👁 Visitors: <span id="vCount">18,000</span></div>
+            <div class="visitor-badge">👁 Visitors: <span id="vCount">0</span></div>
         </div>
     </div>
 
     <script>
-        // العداد الآمن (محاكاة محلية لا تتصل بسيرفرات)
-        const vCountElement = document.getElementById('vCount');
-        let currentCount = parseInt(localStorage.getItem('fake_v_count')) || 18000;
-        currentCount += Math.floor(Math.random() * 5) + 1;
-        localStorage.setItem('fake_v_count', currentCount);
-        vCountElement.innerText = currentCount.toLocaleString();
+        document.addEventListener('contextmenu', event => event.preventDefault()); 
+
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                
+                const rainCanvas = document.getElementById('rainCanvas');
+                rainCanvas.style.opacity = "1";
+                const ctxRain = rainCanvas.getContext('2d', { alpha: true });
+                function resizeRain() { rainCanvas.width = window.innerWidth; rainCanvas.height = window.innerHeight; }
+                resizeRain();
+                const rainParticles = [];
+                for (let i = 0; i < 40; i++) { 
+                    rainParticles.push({ x: Math.random() * rainCanvas.width, y: Math.random() * rainCanvas.height, size: Math.random() * 2, speedY: Math.random() * 0.4 + 0.1, opacity: Math.random() * 0.5 + 0.1 });
+                }
+                function animateRain() {
+                    ctxRain.clearRect(0, 0, rainCanvas.width, rainCanvas.height); 
+                    rainParticles.forEach(p => {
+                        ctxRain.fillStyle = `rgba(157, 0, 255, ${p.opacity})`; ctxRain.beginPath(); ctxRain.arc(p.x, p.y, p.size, 0, Math.PI * 2); ctxRain.fill();
+                        p.y += p.speedY; if (p.y > rainCanvas.height) { p.y = 0; p.x = Math.random() * rainCanvas.width; }
+                    }); requestAnimationFrame(animateRain);
+                } animateRain();
+
+                const innerCanvas = document.getElementById('innerBouncingCanvas');
+                innerCanvas.style.opacity = "1";
+                const ctxInner = innerCanvas.getContext('2d');
+                const container = document.getElementById('mainContainer');
+                let innerW, innerH;
+                function resizeInnerCanvas() { innerW = container.offsetWidth; innerH = container.offsetHeight; innerCanvas.width = innerW; innerCanvas.height = innerH; }
+                resizeInnerCanvas();
+                const linesParticles = [];
+                for(let i=0; i<15; i++) { linesParticles.push({ x: Math.random() * 300, y: Math.random() * 300, vx: (Math.random() - 0.5) * 1.5, vy: (Math.random() - 0.5) * 1.5 }); }
+                function animateInnerLines() {
+                    ctxInner.clearRect(0, 0, innerW, innerH);
+                    for(let i=0; i<linesParticles.length; i++) {
+                        let p = linesParticles[i]; p.x += p.vx; p.y += p.vy;
+                        if(p.x <= 0 || p.x >= innerW) p.vx *= -1; if(p.y <= 0 || p.y >= innerH) p.vy *= -1;
+                    }
+                    ctxInner.lineWidth = 1;
+                    for(let i=0; i<linesParticles.length; i++) {
+                        for(let j=i+1; j<linesParticles.length; j++) {
+                            let dx = linesParticles[i].x - linesParticles[j].x; let dy = linesParticles[i].y - linesParticles[j].y;
+                            let dist = Math.sqrt(dx*dx + dy*dy);
+                            if(dist < 80) { ctxInner.beginPath(); ctxInner.strokeStyle = `rgba(157, 0, 255, ${1 - dist/80})`; ctxInner.moveTo(linesParticles[i].x, linesParticles[i].y); ctxInner.lineTo(linesParticles[j].x, linesParticles[j].y); ctxInner.stroke(); }
+                        }
+                    } requestAnimationFrame(animateInnerLines);
+                } animateInnerLines();
+                window.addEventListener('resize', () => { resizeRain(); resizeInnerCanvas(); });
+
+                const counterNamespace = "vortx_official_page"; 
+                const counterKey = "total_visits";
+                const vCountElement = document.getElementById('vCount');
+                const savedCount = localStorage.getItem('vortx_last_count');
+                if (savedCount) { vCountElement.innerText = savedCount; } else { vCountElement.innerText = "..."; }
+
+                fetch(`https://api.counterapi.dev/v1/${counterNamespace}/${counterKey}/up`)
+                  .then(response => response.json())
+                  .then(data => {
+                      if(data && data.count) {
+                          const finalNumber = data.count.toLocaleString();
+                          vCountElement.innerText = finalNumber;
+                          localStorage.setItem('vortx_last_count', finalNumber);
+                      }
+                  }).catch(error => { console.log("Cached count shown."); });
+
+                const robot = document.getElementById('cyber-robot');
+                robot.style.opacity = '1';
+                const robotMesh = document.querySelector('.robot-mesh');
+                const laser = document.getElementById('robot-laser');
+                const telegramBtn = document.getElementById('telegram-btn');
+                let isDragging = false; let xOffset = 0, yOffset = 0;
+
+                setTimeout(() => {
+                    if(!telegramBtn) return;
+                    const targetRect = telegramBtn.getBoundingClientRect();
+                    const robotRect = robot.getBoundingClientRect();
+                    const moveX = targetRect.left - robotRect.left - 80; 
+                    const moveY = targetRect.top - robotRect.top + 10;
+                    
+                    robot.style.transition = 'transform 1.5s ease-in-out';
+                    robot.style.transform = `translate(${moveX}px, ${moveY}px)`;
+                    xOffset = moveX; yOffset = moveY;
+                    
+                    setTimeout(() => {
+                        const currentRect = robot.getBoundingClientRect();
+                        const dx = targetRect.left - (currentRect.left + 45); 
+                        const dy = (targetRect.top + targetRect.height/2) - (currentRect.top + 22);
+                        const distance = Math.sqrt(dx*dx + dy*dy);
+                        const angle = Math.atan2(dy, dx) * 180 / Math.PI;
+                        
+                        laser.style.width = `${distance}px`; laser.style.transform = `rotate(${angle}deg)`;
+                        laser.style.opacity = '1'; telegramBtn.classList.add('btn-blue-reaction');
+                        
+                        setTimeout(() => {
+                            laser.style.opacity = '0'; telegramBtn.classList.remove('btn-blue-reaction');
+                            robot.style.transform = `translate(0px, 0px)`; xOffset = 0; yOffset = 0;
+                        }, 2000); 
+                    }, 1500); 
+                }, 1000);
+
+                let initialX, initialY;
+                robot.addEventListener('touchstart', (e) => {
+                    if(isDragging) return; e.stopPropagation(); 
+                    robotMesh.classList.remove('robot-shake'); robotMesh.classList.add('robot-spin', 'robot-red-theme');
+                    setTimeout(() => { robotMesh.classList.remove('robot-spin', 'robot-red-theme'); }, 500);
+                    initialX = e.touches[0].pageX - xOffset; initialY = e.touches[0].pageY - yOffset;
+                    robot.style.transition = 'none';
+                });
+                robot.addEventListener('touchmove', (e) => {
+                    isDragging = true; e.preventDefault();
+                    const currentX = e.touches[0].pageX - initialX; const currentY = e.touches[0].pageY - initialY;
+                    xOffset = currentX; yOffset = currentY; robot.style.transform = `translate(${currentX}px, ${currentY}px)`;
+                }, { passive: false });
+                robot.addEventListener('touchend', () => {
+                    if(isDragging) {
+                        robotMesh.classList.add('robot-shake');
+                        setTimeout(() => { robotMesh.classList.remove('robot-shake'); }, 600); isDragging = false;
+                    }
+                });
+
+            }, 300); 
+        });
+
+        document.addEventListener("mousemove", e => {
+            const x = (window.innerWidth / 2 - e.clientX) / 80; const y = (window.innerHeight / 2 - e.clientY) / 80;
+            document.body.style.transform = `translate(${x}px, ${y}px) translateZ(0)`;
+        });
+
+        const flash = document.getElementById('flash');
+        document.addEventListener('click', (e) => {
+            if (e.target.closest('#cyber-robot') || e.target.closest('.link-btn')) return;
+            flash.style.opacity = '1'; setTimeout(() => { flash.style.opacity = '0'; }, 100);
+        });
 
         function copyTelegramLink() {
-            navigator.clipboard.writeText("https://t.me/v_ortx");
-            alert("Copied!");
+            const linkToCopy = "https://t.me/v_ortx";
+            navigator.clipboard.writeText(linkToCopy).then(() => {
+                const box = document.getElementById('copyBox');
+                const originalHTML = box.innerHTML;
+                box.innerHTML = '<span style="color: #00f3ff; font-weight: bold; width: 100%; text-align: center;">Copied! ✔️</span>';
+                setTimeout(() => { box.innerHTML = originalHTML; }, 2000);
+            }).catch(err => {
+                console.error('Failed to copy!', err);
+            });
         }
-
-        // --- بقية الكود حقك كما هو ---
-        document.addEventListener('contextmenu', event => event.preventDefault()); 
-        // ... (كل السكربتات اللي كنت كاتبها موجودة هنا)
-        window.addEventListener('load', () => { /* باقي منطق الروبوت والمطر */ });
     </script>
 </body>
 </html>
