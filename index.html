@@ -147,38 +147,57 @@
         .link-btn:hover { transform: scale(1.05); box-shadow: 0 0 15px #b400ff, 0 0 30px #7a00ff; border-color: var(--neon-purple); }
 
         .store-btn { background: linear-gradient(90deg, #4a00e0, #8e2de2); box-shadow: 0 0 15px rgba(157, 0, 255, 0.3); }
-        
-        /* --- ستايل الزر الزجاجي المطور الحصري للدعم لبراند VORTX --- */
-        .vortx-glass-btn {
+
+        /* ============================================================ */
+        /* --- VORTX GOLD BUTTON — Dedicated Premium Dark-Gold Style --- */
+        /* ============================================================ */
+        .vortx-gold-btn {
             position: relative !important;
-            background: rgba(255, 255, 255, 0.03) !important;
-            backdrop-filter: blur(12px) !important;
-            -webkit-backdrop-filter: blur(12px) !important;
-            border: 1px solid rgba(157, 0, 255, 0.4) !important;
-            box-shadow: 0 8px 32px 0 rgba(157, 0, 255, 0.15) !important;
             overflow: hidden !important;
-            letter-spacing: 1px;
+            color: #ffffff !important;
+            font-weight: 800 !important;
+            letter-spacing: 1.5px !important;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.6) !important;
+
+            background: linear-gradient(45deg, #1a1100, #4d3300, #805500, #4d3300, #1a1100) !important;
+            background-size: 400% 400% !important;
+
+            border: 1px solid rgba(212, 175, 55, 0.5) !important;
+            box-shadow:
+                0 0 12px rgba(212, 175, 55, 0.45),
+                0 0 28px rgba(128, 85, 0, 0.35),
+                inset 0 0 12px rgba(212, 175, 55, 0.12) !important;
+
+            /* Entrance fade-in (stagger) + infinite liquid gold wave, running together */
+            animation:
+                fadeInUpBlur 0.5s cubic-bezier(0.2, 0.8, 0.2, 1) forwards,
+                vortxGoldWave 6s ease infinite !important;
+            animation-delay: 0.5s, 0s !important;
+
+            transition: transform 0.35s ease, box-shadow 0.35s ease, border-color 0.35s ease, animation-duration 0.35s ease !important;
         }
-        .vortx-glass-btn::before {
-            content: '';
-            position: absolute;
-            top: 0; left: -150%;
-            width: 60%; height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.35), transparent);
-            transform: skewX(-35deg);
-            animation: sweep 3s infinite ease-in-out;
+
+        @keyframes vortxGoldWave {
+            0%   { background-position: 0% 50%; }
+            50%  { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
         }
-        @keyframes sweep {
-            0% { left: -150%; }
-            30% { left: 150%; }
-            100% { left: 150%; }
+
+        .vortx-gold-btn:hover {
+            transform: scale(1.05) !important;
+            border-color: rgba(255, 215, 0, 0.9) !important;
+            box-shadow:
+                0 0 25px rgba(212, 175, 55, 0.9),
+                0 0 50px rgba(255, 195, 0, 0.6),
+                0 0 80px rgba(212, 175, 55, 0.35),
+                inset 0 0 16px rgba(255, 215, 0, 0.25) !important;
+            /* Speed up the inner golden wave on hover */
+            animation:
+                fadeInUpBlur 0.5s cubic-bezier(0.2, 0.8, 0.2, 1) forwards,
+                vortxGoldWave 2s ease infinite !important;
+            animation-delay: 0.5s, 0s !important;
         }
-        .vortx-glass-btn:hover {
-            background: rgba(157, 0, 255, 0.25) !important;
-            border-color: var(--neon-purple) !important;
-            box-shadow: 0 0 25px rgba(157, 0, 255, 0.7), 0 0 50px rgba(157, 0, 255, 0.4) !important;
-            transform: scale(1.05) translateY(-3px) !important;
-        }
+        /* ============================================================ */
 
         .btn-icon { width: 44px; height: 44px; margin-right: 12px; object-fit: contain; pointer-events: none;}
         .btn-icon-telegram { transform: scale(1.3); }
@@ -281,8 +300,8 @@
         <div class="links-wrapper">
             <a href="store.html" class="link-btn store-btn">🛒 Online Store</a>
             
-            <!-- زر الدعم الزجاجي العالمي الجديد لبراند VORTX الموجه للأجانب -->
-            <a href="https://creators.sa/vortx" target="_blank" class="link-btn vortx-glass-btn">Support VORTX ⚡</a>
+            <!-- زر الدعم الذهبي الفاخر الحصري لبراند VORTX -->
+            <a href="https://creators.sa/vortx" target="_blank" class="link-btn vortx-gold-btn">Support VORTX 👑</a>
             
             <a href="https://www.tiktok.com/@ortr.1?_r=1&_t=ZS-94WfLhF9TMt" target="_blank" class="link-btn"><img src="tik.png" alt="TikTok" class="btn-icon glow-tiktok"> TikTok</a>
             
