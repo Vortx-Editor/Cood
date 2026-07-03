@@ -103,13 +103,14 @@
         .logo-container { animation-delay: 0.1s; }
         .title-container { animation-delay: 0.2s; }
         .crystal-panel { animation-delay: 0.3s; }
-        .link-btn:nth-child(1) { animation-delay: 0.4s; } 
-        .link-btn:nth-child(2) { animation-delay: 0.5s; } 
-        .link-btn:nth-child(3) { animation-delay: 0.6s; } /* YouTube */
-        .link-btn:nth-child(4) { animation-delay: 0.7s; } /* Telegram */
-        .copy-box { animation-delay: 0.75s; } 
-        .link-btn:nth-child(6) { animation-delay: 0.8s; } /* Instagram */
-        .visitor-badge-container { animation-delay: 0.9s; }
+        .link-btn:nth-child(1) { animation-delay: 0.4s; } /* Online Store */
+        .link-btn:nth-child(2) { animation-delay: 0.5s; } /* Support VORTX الزجاجي الجديد */
+        .link-btn:nth-child(3) { animation-delay: 0.6s; } /* TikTok */
+        .link-btn:nth-child(4) { animation-delay: 0.7s; } /* YouTube */
+        .link-btn:nth-child(5) { animation-delay: 0.8s; } /* Telegram */
+        .copy-box { animation-delay: 0.85s; } 
+        .link-btn:nth-child(7) { animation-delay: 0.9s; } /* Instagram */
+        .visitor-badge-container { animation-delay: 1.0s; }
 
         /* --- 5. Logo & Title --- */
         .logo-container {
@@ -146,6 +147,39 @@
         .link-btn:hover { transform: scale(1.05); box-shadow: 0 0 15px #b400ff, 0 0 30px #7a00ff; border-color: var(--neon-purple); }
 
         .store-btn { background: linear-gradient(90deg, #4a00e0, #8e2de2); box-shadow: 0 0 15px rgba(157, 0, 255, 0.3); }
+        
+        /* --- ستايل الزر الزجاجي المطور الحصري للدعم لبراند VORTX --- */
+        .vortx-glass-btn {
+            position: relative !important;
+            background: rgba(255, 255, 255, 0.03) !important;
+            backdrop-filter: blur(12px) !important;
+            -webkit-backdrop-filter: blur(12px) !important;
+            border: 1px solid rgba(157, 0, 255, 0.4) !important;
+            box-shadow: 0 8px 32px 0 rgba(157, 0, 255, 0.15) !important;
+            overflow: hidden !important;
+            letter-spacing: 1px;
+        }
+        .vortx-glass-btn::before {
+            content: '';
+            position: absolute;
+            top: 0; left: -150%;
+            width: 60%; height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.35), transparent);
+            transform: skewX(-35deg);
+            animation: sweep 3s infinite ease-in-out;
+        }
+        @keyframes sweep {
+            0% { left: -150%; }
+            30% { left: 150%; }
+            100% { left: 150%; }
+        }
+        .vortx-glass-btn:hover {
+            background: rgba(157, 0, 255, 0.25) !important;
+            border-color: var(--neon-purple) !important;
+            box-shadow: 0 0 25px rgba(157, 0, 255, 0.7), 0 0 50px rgba(157, 0, 255, 0.4) !important;
+            transform: scale(1.05) translateY(-3px) !important;
+        }
+
         .btn-icon { width: 44px; height: 44px; margin-right: 12px; object-fit: contain; pointer-events: none;}
         .btn-icon-telegram { transform: scale(1.3); }
         .btn-icon-instagram { transform: scale(1.10); } 
@@ -246,6 +280,10 @@
 
         <div class="links-wrapper">
             <a href="store.html" class="link-btn store-btn">🛒 Online Store</a>
+            
+            <!-- زر الدعم الزجاجي العالمي الجديد لبراند VORTX الموجه للأجانب -->
+            <a href="https://creators.sa/vortx" target="_blank" class="link-btn vortx-glass-btn">Support VORTX ⚡</a>
+            
             <a href="https://www.tiktok.com/@ortr.1?_r=1&_t=ZS-94WfLhF9TMt" target="_blank" class="link-btn"><img src="tik.png" alt="TikTok" class="btn-icon glow-tiktok"> TikTok</a>
             
             <a href="https://youtube.com/@v_ort_x?si=JjBqOWZN0gYPpwSH" target="_blank" class="link-btn"><img src="1782242330467.png" alt="YouTube" class="btn-icon glow-youtube"> YouTube</a>
