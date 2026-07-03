@@ -104,7 +104,7 @@
         .title-container { animation-delay: 0.2s; }
         .crystal-panel { animation-delay: 0.3s; }
         .link-btn:nth-child(1) { animation-delay: 0.4s; } /* Online Store */
-        .link-btn:nth-child(2) { animation-delay: 0.5s; } /* Support VORTX الزجاجي الجديد */
+        .link-btn:nth-child(2) { animation-delay: 0.5s; } /* Support VORTX الذهبي */
         .link-btn:nth-child(3) { animation-delay: 0.6s; } /* TikTok */
         .link-btn:nth-child(4) { animation-delay: 0.7s; } /* YouTube */
         .link-btn:nth-child(5) { animation-delay: 0.8s; } /* Telegram */
@@ -148,9 +148,7 @@
 
         .store-btn { background: linear-gradient(90deg, #4a00e0, #8e2de2); box-shadow: 0 0 15px rgba(157, 0, 255, 0.3); }
 
-        /* ============================================================ */
-        /* --- VORTX GOLD BUTTON — Dedicated Premium Dark-Gold Style --- */
-        /* ============================================================ */
+        /* --- ستايل الذهب السائل الخاص والحصري لزر الدعم VORTX --- */
         .vortx-gold-btn {
             position: relative !important;
             overflow: hidden !important;
@@ -158,23 +156,13 @@
             font-weight: 800 !important;
             letter-spacing: 1.5px !important;
             text-shadow: 0 2px 4px rgba(0, 0, 0, 0.6) !important;
-
             background: linear-gradient(45deg, #1a1100, #4d3300, #805500, #4d3300, #1a1100) !important;
             background-size: 400% 400% !important;
-
             border: 1px solid rgba(212, 175, 55, 0.5) !important;
-            box-shadow:
-                0 0 12px rgba(212, 175, 55, 0.45),
-                0 0 28px rgba(128, 85, 0, 0.35),
-                inset 0 0 12px rgba(212, 175, 55, 0.12) !important;
-
-            /* Entrance fade-in (stagger) + infinite liquid gold wave, running together */
-            animation:
-                fadeInUpBlur 0.5s cubic-bezier(0.2, 0.8, 0.2, 1) forwards,
-                vortxGoldWave 6s ease infinite !important;
+            box-shadow: 0 0 12px rgba(212, 175, 55, 0.45), 0 0 28px rgba(128, 85, 0, 0.35), inset 0 0 12px rgba(212, 175, 55, 0.12) !important;
+            animation: fadeInUpBlur 0.5s cubic-bezier(0.2, 0.8, 0.2, 1) forwards, vortxGoldWave 6s ease infinite !important;
             animation-delay: 0.5s, 0s !important;
-
-            transition: transform 0.35s ease, box-shadow 0.35s ease, border-color 0.35s ease, animation-duration 0.35s ease !important;
+            transition: transform 0.35s ease, box-shadow 0.35s ease, border-color 0.35s ease !important;
         }
 
         @keyframes vortxGoldWave {
@@ -186,18 +174,10 @@
         .vortx-gold-btn:hover {
             transform: scale(1.05) !important;
             border-color: rgba(255, 215, 0, 0.9) !important;
-            box-shadow:
-                0 0 25px rgba(212, 175, 55, 0.9),
-                0 0 50px rgba(255, 195, 0, 0.6),
-                0 0 80px rgba(212, 175, 55, 0.35),
-                inset 0 0 16px rgba(255, 215, 0, 0.25) !important;
-            /* Speed up the inner golden wave on hover */
-            animation:
-                fadeInUpBlur 0.5s cubic-bezier(0.2, 0.8, 0.2, 1) forwards,
-                vortxGoldWave 2s ease infinite !important;
+            box-shadow: 0 0 25px rgba(212, 175, 55, 0.9), 0 0 50px rgba(255, 195, 0, 0.6), 0 0 80px rgba(212, 175, 55, 0.35) !important;
+            animation: fadeInUpBlur 0.5s cubic-bezier(0.2, 0.8, 0.2, 1) forwards, vortxGoldWave 2s ease infinite !important;
             animation-delay: 0.5s, 0s !important;
         }
-        /* ============================================================ */
 
         .btn-icon { width: 44px; height: 44px; margin-right: 12px; object-fit: contain; pointer-events: none;}
         .btn-icon-telegram { transform: scale(1.3); }
@@ -260,7 +240,7 @@
         @keyframes shakeDust { 0%, 100% { transform: translateX(0) rotate(0); } 20%, 60% { transform: translateX(-5px) rotate(-10deg); } 40%, 80% { transform: translateX(5px) rotate(10deg); } }
         .robot-red-theme .robot-body { background: linear-gradient(135deg, #4a0000, var(--robot-red)); box-shadow: 0 0 20px var(--robot-red); }
 
-        /* --- 10. PC Layout Fix --- */
+        /* --- PC Layout Fix --- */
         @media (min-width: 768px) {
             .bg-ae { right: calc(50% - 320px) !important; }
             .bg-am { left: calc(50% - 320px) !important; }
@@ -300,7 +280,7 @@
         <div class="links-wrapper">
             <a href="store.html" class="link-btn store-btn">🛒 Online Store</a>
             
-            <!-- زر الدعم الذهبي الفاخر الحصري لبراند VORTX -->
+            <!-- زر الدعم الذهبي الفاخر المطور لبراند VORTX -->
             <a href="https://creators.sa/vortx" target="_blank" class="link-btn vortx-gold-btn">Support VORTX 👑</a>
             
             <a href="https://www.tiktok.com/@ortr.1?_r=1&_t=ZS-94WfLhF9TMt" target="_blank" class="link-btn"><img src="tik.png" alt="TikTok" class="btn-icon glow-tiktok"> TikTok</a>
@@ -452,7 +432,7 @@
 
         const flash = document.getElementById('flash');
         document.addEventListener('click', (e) => {
-            if (e.target.closest('#cyber-robot') || e.target.closest('.link-btn')) return;
+            if (e.target.closest('#cyber-robot' ) || e.target.closest('.link-btn')) return;
             flash.style.opacity = '1'; setTimeout(() => { flash.style.opacity = '0'; }, 100);
         });
 
