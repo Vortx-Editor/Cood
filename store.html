@@ -54,7 +54,7 @@
         }
         .back-btn:hover { background: rgba(180, 0, 255, 0.2); box-shadow: 0 0 15px var(--neon-purple); transform: translateX(-3px); }
 
-        /* أزرار البرامج */
+        /* أزرار البرامج (اللايت موشن صار أول) */
         .programs-nav { display: flex; justify-content: center; gap: 20px; width: 100%; max-width: 600px; margin: 0 auto 20px; }
         .prog-btn {
             flex: 1; padding: 18px 10px; font-size: 18px; font-weight: 900;
@@ -67,25 +67,27 @@
             box-shadow: 0 0 25px rgba(180, 0, 255, 0.4); text-shadow: 0 0 8px #fff; transform: translateY(-3px);
         }
 
-        /* شريط الأقسام */
+        /* شريط الأقسام بتصميم زجاجي فخم وإنعكاس نيون */
         .category-nav {
-            display: flex; justify-content: center; gap: 10px; width: 100%; max-width: 500px;
-            margin: 0 auto 30px; position: sticky; top: 15px; z-index: 1000;
-            background: rgba(5, 0, 10, 0.85); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
-            padding: 10px 15px; border-radius: 20px; border: 1px solid rgba(180, 0, 255, 0.4);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.8);
+            display: flex; justify-content: center; gap: 12px; width: 100%; max-width: 520px;
+            margin: 0 auto 35px; position: sticky; top: 20px; z-index: 1000;
+            background: rgba(12, 4, 20, 0.82); 
+            backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+            padding: 12px 18px; border-radius: 22px; 
+            border: 1px solid rgba(180, 0, 255, 0.45);
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.8), 0 0 20px rgba(180, 0, 255, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.15);
         }
 
         .cat-btn {
             display: inline-block; text-align: center; color: #fff; text-decoration: none;
-            font-weight: 700; padding: 10px 20px; border-radius: 12px; font-size: 14px;
+            font-weight: 700; padding: 10px 20px; border-radius: 14px; font-size: 14px;
             letter-spacing: 1px; background: rgba(255,255,255,0.03); border: 1px solid transparent;
             cursor: pointer; transition: all 0.3s; text-transform: uppercase; flex: 1;
         }
 
         .cat-btn:hover, .cat-btn:active {
-            background: rgba(180, 0, 255, 0.2); border-color: var(--neon-purple);
-            box-shadow: 0 0 10px rgba(180, 0, 255, 0.4); transform: translateY(-2px);
+            background: rgba(180, 0, 255, 0.25); border-color: var(--neon-purple);
+            box-shadow: 0 0 15px rgba(180, 0, 255, 0.5); transform: translateY(-2px);
         }
 
         .app-section { display: none; animation: fadeInSec 0.5s ease forwards; }
@@ -137,7 +139,7 @@
             font-size: 24px; font-weight: 900; color: #d866ff; text-shadow: 0 0 10px rgba(180, 0, 255, 0.5); margin-bottom: 15px;
         }
 
-        /* زر الشراء المباشر المصغر والمركز بالميدان */
+        /* زر الشراء المباشر المصغر والمركز */
         .buy-now-btn {
             display: flex;
             justify-content: center;
@@ -200,9 +202,10 @@
             <a href="index.html" class="back-btn">⬅ BACK</a>
         </div>
 
+        <!-- أزرار البرامج (اللايت موشن أولاً كافتراضي) -->
         <div class="programs-nav">
-            <button class="prog-btn active" onclick="switchApp('ae-section', this)">💻 After Effects</button>
-            <button class="prog-btn" onclick="switchApp('am-section', this)">📱 Alight Motion</button>
+            <button class="prog-btn active" onclick="switchApp('am-section', this)">📱 Alight Motion</button>
+            <button class="prog-btn" onclick="switchApp('ae-section', this)">💻 After Effects</button>
         </div>
 
         <nav class="category-nav">
@@ -211,46 +214,9 @@
             <div class="cat-btn" onclick="scrollToCat('cat-effects')">Effects</div>
         </nav>
 
-        <!-- قسم After Effects -->
-        <div id="ae-section" class="app-section active-app">
-            
-            <h2 class="section-title cat-shakes">✨ AE Shakes</h2>
-            <div class="products-grid">
-                <div class="product-card">
-                    <div class="product-img-container"></div>
-                    <div class="product-title">Product Name Here</div>
-                    <div class="product-desc">Product description goes here.</div>
-                    <div class="product-price">$0.00</div>
-                    <a href="#" class="buy-now-btn">Coming Soon</a>
-                </div>
-            </div>
-
-            <h2 class="section-title cat-cc">🎨 AE Color Correction</h2>
-            <div class="products-grid">
-                <div class="product-card">
-                    <div class="product-img-container"></div>
-                    <div class="product-title">Product Name Here</div>
-                    <div class="product-desc">Product description goes here.</div>
-                    <div class="product-price">$0.00</div>
-                    <a href="#" class="buy-now-btn">Coming Soon</a>
-                </div>
-            </div>
-
-            <h2 class="section-title cat-effects">⚡ AE Effects</h2>
-            <div class="products-grid">
-                <div class="product-card">
-                    <div class="product-img-container"></div>
-                    <div class="product-title">Product Name Here</div>
-                    <div class="product-desc">Product description goes here.</div>
-                    <div class="product-price">$0.00</div>
-                    <a href="#" class="buy-now-btn">Coming Soon</a>
-                </div>
-            </div>
-        </div>
-
-        <!-- قسم Alight Motion -->
-        <div id="am-section" class="app-section">
-            <h2 class="section-title cat-shakes">📱 AM Assets</h2>
+        <!-- قسم Alight Motion (صار يظهر أولاً) -->
+        <div id="am-section" class="app-section active-app">
+            <h2 class="section-title cat-shakes">📱 AM CC</h2>
             <div class="products-grid">
                 
                 <!-- المنتج الأول -->
@@ -286,6 +252,43 @@
                     <a href="https://payhip.com/b/IB15F" target="_blank" class="buy-now-btn">BUY NOW</a>
                 </div>
 
+            </div>
+        </div>
+
+        <!-- قسم After Effects (صار ثانياً) -->
+        <div id="ae-section" class="app-section">
+            
+            <h2 class="section-title cat-shakes">✨ AE Shakes</h2>
+            <div class="products-grid">
+                <div class="product-card">
+                    <div class="product-img-container"></div>
+                    <div class="product-title">Product Name Here</div>
+                    <div class="product-desc">Product description goes here.</div>
+                    <div class="product-price">$0.00</div>
+                    <a href="#" class="buy-now-btn">Coming Soon</a>
+                </div>
+            </div>
+
+            <h2 class="section-title cat-cc">🎨 AE Color Correction</h2>
+            <div class="products-grid">
+                <div class="product-card">
+                    <div class="product-img-container"></div>
+                    <div class="product-title">Product Name Here</div>
+                    <div class="product-desc">Product description goes here.</div>
+                    <div class="product-price">$0.00</div>
+                    <a href="#" class="buy-now-btn">Coming Soon</a>
+                </div>
+            </div>
+
+            <h2 class="section-title cat-effects">⚡ AE Effects</h2>
+            <div class="products-grid">
+                <div class="product-card">
+                    <div class="product-img-container"></div>
+                    <div class="product-title">Product Name Here</div>
+                    <div class="product-desc">Product description goes here.</div>
+                    <div class="product-price">$0.00</div>
+                    <a href="#" class="buy-now-btn">Coming Soon</a>
+                </div>
             </div>
         </div>
 
