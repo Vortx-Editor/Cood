@@ -137,34 +137,34 @@
             font-size: 24px; font-weight: 900; color: #d866ff; text-shadow: 0 0 10px rgba(180, 0, 255, 0.5); margin-bottom: 15px;
         }
 
-        /* تعديل وحجم زر الشراء ليصبح بالمنتصف ومصغر */
-        .buy-now-btn, a.payhip-buy-button {
-            display: flex !important;
-            justify-content: center !important;
-            align-items: center !important;
-            width: 80% !important;
-            max-width: 200px !important;
-            margin: 0 auto !important;
-            padding: 10px 15px !important; 
-            background: linear-gradient(90deg, #5e00b3, #b400ff) !important;
-            color: #fff !important; 
-            border: none !important; 
-            border-radius: 10px !important; 
-            font-size: 14px !important; 
-            font-weight: 900 !important;
-            cursor: pointer !important; 
-            text-decoration: none !important; 
-            transition: all 0.3s !important; 
-            box-shadow: 0 0 12px rgba(180, 0, 255, 0.4) !important; 
-            text-transform: uppercase !important; 
-            letter-spacing: 1px !important;
-            text-align: center !important;
+        /* زر الشراء المباشر المصغر والمركز بالميدان */
+        .buy-now-btn {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 80%;
+            max-width: 200px;
+            margin: 0 auto;
+            padding: 10px 15px; 
+            background: linear-gradient(90deg, #5e00b3, #b400ff);
+            color: #fff; 
+            border: none; 
+            border-radius: 10px; 
+            font-size: 14px; 
+            font-weight: 900;
+            cursor: pointer; 
+            text-decoration: none; 
+            transition: all 0.3s; 
+            box-shadow: 0 0 12px rgba(180, 0, 255, 0.4); 
+            text-transform: uppercase; 
+            letter-spacing: 1px;
+            text-align: center;
         }
 
-        .buy-now-btn:hover, a.payhip-buy-button:hover { 
-            box-shadow: 0 0 20px var(--neon-purple) !important; 
-            transform: scale(1.05) !important; 
-            background: linear-gradient(90deg, #7a00e6, #c433ff) !important;
+        .buy-now-btn:hover { 
+            box-shadow: 0 0 20px var(--neon-purple); 
+            transform: scale(1.05); 
+            background: linear-gradient(90deg, #7a00e6, #c433ff);
         }
 
         .trust-badges {
@@ -261,7 +261,7 @@
                     <div class="product-title">Cc for Light Motion🌪🔥</div>
                     <div class="product-desc">Cinematic 4K color correction preset for Alight Motion.</div>
                     <div class="product-price">$5.00</div>
-                    <a href="https://payhip.com/b/gBzm3" class="buy-now-btn payhip-buy-button" data-theme="none">BUY NOW</a>
+                    <a href="https://payhip.com/b/gBzm3" target="_blank" class="buy-now-btn">BUY NOW</a>
                 </div>
 
                 <!-- المنتج الثاني -->
@@ -272,7 +272,7 @@
                     <div class="product-title">VORTX Preset 💜</div>
                     <div class="product-desc">Exclusive Pro color preset for Alight Motion.</div>
                     <div class="product-price">$5.00</div>
-                    <a href="https://payhip.com/b/lDrPF" class="buy-now-btn payhip-buy-button" data-theme="none">BUY NOW</a>
+                    <a href="https://payhip.com/b/lDrPF" target="_blank" class="buy-now-btn">BUY NOW</a>
                 </div>
 
                 <!-- المنتج الثالث -->
@@ -283,7 +283,7 @@
                     <div class="product-title">AM Color Filter 🔥</div>
                     <div class="product-desc">High contrast visual color preset for editing.</div>
                     <div class="product-price">$5.00</div>
-                    <a href="https://payhip.com/b/IB15F" class="buy-now-btn payhip-buy-button" data-theme="none">BUY NOW</a>
+                    <a href="https://payhip.com/b/IB15F" target="_blank" class="buy-now-btn">BUY NOW</a>
                 </div>
 
             </div>
@@ -334,8 +334,6 @@
             }
         }
     </script>
-
-    <script src="https://payhip.com/payhip.js"></script>
 
 </body>
 </html>
