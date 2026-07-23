@@ -32,7 +32,6 @@
             align-items: center;
         }
 
-        /* متوافق مع اللابتوبات والكمبيوترات */
         .store-container { width: 100%; max-width: 1100px; position: relative; z-index: 10; }
 
         /* الهيدر */
@@ -123,7 +122,7 @@
             transform: translateY(-8px); box-shadow: 0 15px 35px rgba(180, 0, 255, 0.25); border-color: rgba(180, 0, 255, 0.6);
         }
 
-        /* حاوية الصورة الطولية (مقاس 9:16) بدون أي مثلث */
+        /* حاوية الصورة الطولية (مقاس 9:16) نظيفة ومستقلة */
         .product-img-container {
             width: 100%; aspect-ratio: 9 / 16; border-radius: 12px; background: rgba(0, 0, 0, 0.6);
             margin-bottom: 15px; display: flex; justify-content: center; align-items: center;
@@ -138,7 +137,7 @@
             font-size: 26px; font-weight: 900; color: #d866ff; text-shadow: 0 0 10px rgba(180, 0, 255, 0.5); margin-bottom: 20px;
         }
 
-        /* تخصيص زر الشراء للون البنفسجي بدلاً من الأخضر */
+        /* زر الشراء البنفسجي الذي يشغل النافذة المنبثقة بأمان */
         .buy-now-btn, a.payhip-buy-button {
             display: block !important; width: 100% !important; padding: 14px !important; 
             background: linear-gradient(90deg, #5e00b3, #b400ff) !important;
@@ -240,18 +239,17 @@
             <h2 class="section-title cat-shakes">📱 AM Assets</h2>
             <div class="products-grid">
                 
-                <!-- كرت المنتج المربوط بالكامل بالنافذة المنبثقة الشفافة -->
+                <!-- كرت المنتج مع صورة ثابتة وزر منبثق آمن -->
                 <div class="product-card">
-                    <a href="https://payhip.com/b/gBzm3" class="payhip-buy-button" style="display: block; text-decoration: none;">
-                        <div class="product-img-container">
-                            <img src="Cc1.jpg?v=99" style="width:100%; height:100%; object-fit:cover; border-radius:12px;">
-                        </div>
-                    </a>
+                    <div class="product-img-container">
+                        <img src="Cc1.jpg?v=99" style="width:100%; height:100%; object-fit:cover; border-radius:12px;">
+                    </div>
                     
                     <div class="product-title">Cc for Light Motion🌪🔥</div>
                     <div class="product-desc">Cinematic 4K color correction preset for Alight Motion.</div>
                     <div class="product-price">$10.00</div>
                     
+                    <!-- زر الشراء المنبثق -->
                     <a href="https://payhip.com/b/gBzm3" class="buy-now-btn payhip-buy-button">BUY NOW</a>
                 </div>
 
@@ -304,7 +302,6 @@
         }
     </script>
 
-    <!-- سكربت Payhip لتشغيل النافذة المنبثقة الشفافة فوق المتجر -->
     <script src="https://payhip.com/payhip.js"></script>
 
 </body>
