@@ -116,6 +116,7 @@
             border-radius: 20px; padding: 20px; text-align: center;
             transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); position: relative; overflow: hidden;
             width: 100%; margin: 0 auto;
+            display: flex; flex-direction: column; align-items: center;
         }
 
         .product-card:hover {
@@ -133,21 +134,37 @@
         .product-desc { font-size: 13px; color: #aaa; margin-bottom: 15px; line-height: 1.5; height: 38px; overflow: hidden; }
 
         .product-price {
-            font-size: 26px; font-weight: 900; color: #d866ff; text-shadow: 0 0 10px rgba(180, 0, 255, 0.5); margin-bottom: 20px;
+            font-size: 24px; font-weight: 900; color: #d866ff; text-shadow: 0 0 10px rgba(180, 0, 255, 0.5); margin-bottom: 15px;
         }
 
-        /* أزرار الشراء */
+        /* تعديل وحجم زر الشراء ليصبح بالمنتصف ومصغر */
         .buy-now-btn, a.payhip-buy-button {
-            display: block !important; width: 100% !important; padding: 14px !important; 
+            display: flex !important;
+            justify-content: center !important;
+            align-items: center !important;
+            width: 80% !important;
+            max-width: 200px !important;
+            margin: 0 auto !important;
+            padding: 10px 15px !important; 
             background: linear-gradient(90deg, #5e00b3, #b400ff) !important;
-            color: #fff !important; border: none !important; border-radius: 12px !important; font-size: 16px !important; font-weight: 900 !important;
-            cursor: pointer !important; text-decoration: none !important; transition: all 0.3s !important; 
-            box-shadow: 0 0 15px rgba(180, 0, 255, 0.4) !important; text-transform: uppercase !important; letter-spacing: 1px !important;
+            color: #fff !important; 
+            border: none !important; 
+            border-radius: 10px !important; 
+            font-size: 14px !important; 
+            font-weight: 900 !important;
+            cursor: pointer !important; 
+            text-decoration: none !important; 
+            transition: all 0.3s !important; 
+            box-shadow: 0 0 12px rgba(180, 0, 255, 0.4) !important; 
+            text-transform: uppercase !important; 
+            letter-spacing: 1px !important;
             text-align: center !important;
         }
 
         .buy-now-btn:hover, a.payhip-buy-button:hover { 
-            box-shadow: 0 0 25px var(--neon-purple) !important; transform: scale(1.04) !important; background: linear-gradient(90deg, #7a00e6, #c433ff) !important;
+            box-shadow: 0 0 20px var(--neon-purple) !important; 
+            transform: scale(1.05) !important; 
+            background: linear-gradient(90deg, #7a00e6, #c433ff) !important;
         }
 
         .trust-badges {
@@ -243,19 +260,19 @@
                     </div>
                     <div class="product-title">Cc for Light Motion🌪🔥</div>
                     <div class="product-desc">Cinematic 4K color correction preset for Alight Motion.</div>
-                    <div class="product-price">$10.00</div>
-                    <a href="https://payhip.com/b/gBzm3" class="buy-now-btn payhip-buy-button">BUY NOW</a>
+                    <div class="product-price">$5.00</div>
+                    <a href="https://payhip.com/b/gBzm3" class="buy-now-btn payhip-buy-button" data-theme="none">BUY NOW</a>
                 </div>
 
-                <!-- المنتج الثاني (بالاسم المطابق لملفك المحدد) -->
+                <!-- المنتج الثاني -->
                 <div class="product-card">
                     <div class="product-img-container">
                         <img src="Picsart_26-07-04_18-22-36-628.jpg?v=99" style="width:100%; height:100%; object-fit:cover; border-radius:12px;">
                     </div>
                     <div class="product-title">VORTX Preset 💜</div>
                     <div class="product-desc">Exclusive Pro color preset for Alight Motion.</div>
-                    <div class="product-price">$10.00</div>
-                    <a href="https://payhip.com/b/lDrPF" class="buy-now-btn payhip-buy-button">BUY NOW</a>
+                    <div class="product-price">$5.00</div>
+                    <a href="https://payhip.com/b/lDrPF" class="buy-now-btn payhip-buy-button" data-theme="none">BUY NOW</a>
                 </div>
 
                 <!-- المنتج الثالث -->
@@ -265,8 +282,8 @@
                     </div>
                     <div class="product-title">AM Color Filter 🔥</div>
                     <div class="product-desc">High contrast visual color preset for editing.</div>
-                    <div class="product-price">$10.00</div>
-                    <a href="https://payhip.com/b/IB15F" class="buy-now-btn payhip-buy-button">BUY NOW</a>
+                    <div class="product-price">$5.00</div>
+                    <a href="https://payhip.com/b/IB15F" class="buy-now-btn payhip-buy-button" data-theme="none">BUY NOW</a>
                 </div>
 
             </div>
