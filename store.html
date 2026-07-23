@@ -25,7 +25,6 @@
             background-attachment: fixed;
             min-height: 100vh;
             color: #fff;
-            /* توحيد الخط للإنجليزي ليكون متناسق وفخم */
             font-family: 'Montserrat', sans-serif;
             padding: 20px 20px 80px;
             display: flex;
@@ -55,7 +54,7 @@
         }
         .back-btn:hover { background: rgba(180, 0, 255, 0.2); box-shadow: 0 0 15px var(--neon-purple); transform: translateX(-3px); }
 
-        /* أزرار البرامج العريضة */
+        /* أزرار البرامج */
         .programs-nav { display: flex; justify-content: center; gap: 20px; width: 100%; margin-bottom: 20px; }
         .prog-btn {
             flex: 1; padding: 18px 10px; font-size: 18px; font-weight: 900;
@@ -68,7 +67,7 @@
             box-shadow: 0 0 25px rgba(180, 0, 255, 0.4); text-shadow: 0 0 8px #fff; transform: translateY(-3px);
         }
 
-        /* شريط الأقسام الزجاجي العريض */
+        /* شريط الأقسام */
         .category-nav {
             display: flex; justify-content: center; gap: 10px; width: 90%; max-width: 600px;
             margin: 0 auto 30px; position: sticky; top: 15px; z-index: 1000;
@@ -89,12 +88,10 @@
             box-shadow: 0 0 10px rgba(180, 0, 255, 0.4); transform: translateY(-2px);
         }
 
-        /* إخفاء وإظهار الأقسام حسب البرنامج */
         .app-section { display: none; animation: fadeInSec 0.5s ease forwards; }
         .app-section.active-app { display: block; }
         @keyframes fadeInSec { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
 
-        /* العناوين */
         .section-title {
             font-size: 24px; font-weight: 900; color: #d866ff; text-shadow: 0 0 15px var(--neon-purple);
             margin: 60px 0 25px; padding-bottom: 10px; position: relative;
@@ -105,10 +102,8 @@
             background: var(--neon-purple); box-shadow: 0 0 10px var(--neon-purple); border-radius: 5px;
         }
 
-        /* شبكة المنتجات */
         .products-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 25px; }
 
-        /* كرت المنتج */
         .product-card {
             background: linear-gradient(135deg, rgba(20, 10, 30, 0.8) 0%, rgba(5, 0, 10, 0.9) 100%);
             backdrop-filter: blur(10px); border: 1px solid rgba(180, 0, 255, 0.2);
@@ -120,14 +115,14 @@
             transform: translateY(-8px); box-shadow: 0 15px 35px rgba(180, 0, 255, 0.25); border-color: rgba(180, 0, 255, 0.6);
         }
 
+        /* حاوية الصورة المعدلة بالطول */
         .product-img-container {
-            width: 100%; height: 160px; border-radius: 12px; background: rgba(0, 0, 0, 0.6);
+            width: 100%; aspect-ratio: 9 / 16; border-radius: 12px; background: rgba(0, 0, 0, 0.6);
             margin-bottom: 15px; display: flex; justify-content: center; align-items: center;
             border: 1px solid rgba(255, 255, 255, 0.05); overflow: hidden; box-shadow: inset 0 0 20px rgba(0,0,0,0.8);
             position: relative;
         }
 
-        .placeholder-icon { font-size: 50px; color: rgba(180, 0, 255, 0.3); text-shadow: 0 0 15px rgba(180,0,255,0.2); }
         .play-indicator { position: absolute; font-size: 30px; color: rgba(255,255,255,0.5); text-shadow: 0 0 10px #000; pointer-events: none; }
 
         .product-title { font-size: 19px; font-weight: 900; color: #fff; margin-bottom: 8px; letter-spacing: 1px; text-transform: uppercase;}
@@ -137,16 +132,17 @@
             font-size: 26px; font-weight: 900; color: #d866ff; text-shadow: 0 0 10px rgba(180, 0, 255, 0.5); margin-bottom: 20px;
         }
 
+        /* زر الشراء المغصوب على البنفسجي */
         .buy-now-btn {
             display: block; width: 100%; padding: 14px; 
-            background: linear-gradient(90deg, #5e00b3, #b400ff);
-            color: #fff; border: none; border-radius: 12px; font-size: 16px; font-weight: 900;
+            background: linear-gradient(90deg, #5e00b3, #b400ff) !important;
+            color: #fff !important; border: none; border-radius: 12px; font-size: 16px; font-weight: 900;
             cursor: pointer; text-decoration: none; transition: all 0.3s; 
             box-shadow: 0 0 15px rgba(180, 0, 255, 0.4); text-transform: uppercase; letter-spacing: 1px;
         }
 
         .buy-now-btn:hover { 
-            box-shadow: 0 0 25px var(--neon-purple); transform: scale(1.04); background: linear-gradient(90deg, #7a00e6, #c433ff);
+            box-shadow: 0 0 25px var(--neon-purple); transform: scale(1.04); background: linear-gradient(90deg, #7a00e6, #c433ff) !important;
         }
 
         /* شريط الثقة */
@@ -166,18 +162,6 @@
         .faq-item.active .faq-answer { padding: 15px 20px; max-height: 200px; border-top: 1px dashed rgba(255,255,255,0.1); }
         .arrow { transition: transform 0.3s; }
         .faq-item.active .arrow { transform: rotate(180deg); }
-
-        /* حزمة VIP (مخفية) */
-        .vip-card { grid-column: 1 / -1; background: linear-gradient(135deg, rgba(30, 20, 0, 0.9) 0%, rgba(15, 0, 20, 0.9) 100%); border: 2px solid var(--neon-gold); box-shadow: 0 0 30px rgba(255, 184, 0, 0.15); display: flex; flex-direction: column; align-items: center; padding: 30px; }
-        .vip-card:hover { transform: translateY(-5px); box-shadow: 0 0 40px rgba(255, 184, 0, 0.3); }
-        .vip-title { color: var(--neon-gold); text-shadow: 0 0 15px var(--neon-gold); font-size: 26px; font-weight: 900; margin-bottom: 10px; }
-        .vip-desc { color: #ddd; font-size: 15px; margin-bottom: 20px; max-width: 600px; text-align: center; line-height: 1.6; }
-        .vip-price-wrap { display: flex; align-items: center; gap: 15px; margin-bottom: 20px; }
-        .old-price { text-decoration: line-through; color: #888; font-size: 20px; }
-        .new-price { color: var(--neon-gold); font-size: 32px; font-weight: 900; text-shadow: 0 0 15px var(--neon-gold); }
-        .vip-btn { background: linear-gradient(90deg, #cc9200, #ffb800); box-shadow: 0 0 20px rgba(255, 184, 0, 0.4); max-width: 300px; }
-        .vip-btn:hover { background: linear-gradient(90deg, #e6a400, #ffcc33); box-shadow: 0 0 30px rgba(255, 184, 0, 0.6); }
-
     </style>
 </head>
 <body>
@@ -200,6 +184,7 @@
             <div class="cat-btn" onclick="scrollToCat('cat-effects')">Effects</div>
         </nav>
 
+        <!-- قسم After Effects -->
         <div id="ae-section" class="app-section active-app">
             
             <h2 class="section-title cat-shakes">✨ AE Shakes</h2>
@@ -207,7 +192,7 @@
                 <div class="product-card">
                     <div class="product-img-container"><div class="play-indicator">▶</div></div>
                     <div class="product-title">Product Name Here</div>
-                    <div class="product-desc">Product description goes here. Explain what makes this pack special.</div>
+                    <div class="product-desc">Product description goes here.</div>
                     <div class="product-price">$0.00</div>
                     <a href="#" class="buy-now-btn">Coming Soon</a>
                 </div>
@@ -218,7 +203,7 @@
                 <div class="product-card">
                     <div class="product-img-container"><div class="play-indicator">▶</div></div>
                     <div class="product-title">Product Name Here</div>
-                    <div class="product-desc">Product description goes here. Explain what makes this pack special.</div>
+                    <div class="product-desc">Product description goes here.</div>
                     <div class="product-price">$0.00</div>
                     <a href="#" class="buy-now-btn">Coming Soon</a>
                 </div>
@@ -229,23 +214,36 @@
                 <div class="product-card">
                     <div class="product-img-container"><div class="play-indicator">▶</div></div>
                     <div class="product-title">Product Name Here</div>
-                    <div class="product-desc">Product description goes here. Explain what makes this pack special.</div>
+                    <div class="product-desc">Product description goes here.</div>
                     <div class="product-price">$0.00</div>
                     <a href="#" class="buy-now-btn">Coming Soon</a>
                 </div>
             </div>
         </div>
 
+        <!-- قسم Alight Motion -->
         <div id="am-section" class="app-section">
             <h2 class="section-title cat-shakes">📱 AM Assets</h2>
             <div class="products-grid">
+                
+                <!-- كرت المنتج المربوط بـ Payhip ومعدل بالطول -->
                 <div class="product-card">
-                    <div class="product-img-container"><div class="play-indicator">▶</div></div>
-                    <div class="product-title">Product Name Here</div>
-                    <div class="product-desc">Product description goes here. Explain what makes this pack special.</div>
-                    <div class="product-price">$0.00</div>
-                    <a href="#" class="buy-now-btn">Coming Soon</a>
+                    <!-- الرابط اللي يفتح التفاصيل لما تضغط الصورة -->
+                    <a href="https://payhip.com/b/gBzm3" target="_blank" style="display: block; text-decoration: none;">
+                        <div class="product-img-container">
+                            <img src="Cc💛.jpg" style="width:100%; height:100%; object-fit:cover; border-radius:12px;">
+                            <div class="play-indicator">▶</div>
+                        </div>
+                    </a>
+                    
+                    <div class="product-title">Alight Motion CC 1</div>
+                    <div class="product-desc">Cinematic 4K color correction preset for Alight Motion.</div>
+                    <div class="product-price">$2.00</div>
+                    
+                    <!-- زر الشراء اللي يفتح النافذة الشفافة -->
+                    <a href="https://payhip.com/b/gBzm3" class="buy-now-btn payhip-buy-button">BUY NOW</a>
                 </div>
+
             </div>
         </div>
 
@@ -254,12 +252,12 @@
             
             <div class="faq-item" onclick="this.classList.toggle('active')">
                 <div class="faq-question">When will I receive the files? <span class="arrow">▼</span></div>
-                <div class="faq-answer">Delivery is instant and automated. Once payment is complete, you will be redirected to the download page and receive an email copy.</div>
+                <div class="faq-answer">Delivery is instant and automated. Once payment is complete, you will receive your download link immediately.</div>
             </div>
             
             <div class="faq-item" onclick="this.classList.toggle('active')">
                 <div class="faq-question">Can I get a refund? <span class="arrow">▼</span></div>
-                <div class="faq-answer">Since these are digital files, they are strictly non-refundable once downloaded. Please read the product description carefully before purchasing.</div>
+                <div class="faq-answer">Since these are digital files, they are strictly non-refundable once downloaded.</div>
             </div>
 
             <div class="faq-item" onclick="this.classList.toggle('active')">
@@ -270,7 +268,7 @@
 
         <div class="trust-badges">
             <div class="trust-item">⚡ Instant Delivery</div>
-            <div class="trust-item">🔒 Secure Payment via Gumroad</div>
+            <div class="trust-item">🔒 Secure Payment via Payhip / PayPal</div>
             <div class="trust-item">❌ Non-Refundable Digital Goods</div>
         </div>
 
@@ -294,5 +292,9 @@
             }
         }
     </script>
+
+    <!-- سكربت Payhip لفتح نافذة الدفع الشفافة داخل موقعك -->
+    <script src="https://payhip.com/payhip.js"></script>
+
 </body>
 </html>
